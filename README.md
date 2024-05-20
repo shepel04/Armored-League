@@ -1,4 +1,4 @@
-# Armored-League
+# Armored League
 
  Game about tank football
  
