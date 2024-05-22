@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Photon.Realtime;
+using Photon.Pun;
 
 public class ListItem : MonoBehaviour
 {
@@ -17,4 +18,8 @@ public class ListItem : MonoBehaviour
         _roomPlayersAmount.text = info.PlayerCount + "/" + info.MaxPlayers;
     }
 
+    public void JoinToListRoom()
+    {
+        PhotonNetwork.JoinRoom(_roomName.text);
+    }
 }

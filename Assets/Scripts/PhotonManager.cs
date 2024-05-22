@@ -14,7 +14,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Dropdown _playersAmountDropdown;
     [SerializeField] private ListItem _roomRowPrefab;
     [SerializeField] private Transform _roomsList;
-    
+
+    private List<RoomInfo> _allRoomsInfo = new List<RoomInfo>();
+
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -24,9 +26,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("You are connected to: " + PhotonNetwork.CloudRegion);
-        PhotonNetwork.JoinLobby();
+
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
-    
+
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log("You are disconnected from the server");
@@ -39,7 +45,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             Debug.Log("You are not connected to the server");
             return;
         }
-        
+
         RoomOptions roomOptions = new RoomOptions();
         int selIndexDropdown = _playersAmountDropdown.value;
         roomOptions.MaxPlayers = Int32.Parse(_playersAmountDropdown.options[selIndexDropdown].text);
@@ -47,29 +53,60 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(_roomNameInputField.text))
         {
             PhotonNetwork.CreateRoom(_roomNameInputField.text, roomOptions, TypedLobby.Default);
-            PhotonNetwork.LoadLevel("Main");
         }
     }
 
     public override void OnCreatedRoom()
     {
         Debug.Log("Room " + PhotonNetwork.CurrentRoom.Name + " created!");
+        PhotonNetwork.LoadLevel("Main");
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        Debug.Log("Failed to create room");
+        Debug.Log("Failed to create room " + message);
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (var info in roomList)
         {
+            for (int i = 0; i < _allRoomsInfo.Count; i++)
+            {
+                if (_allRoomsInfo[i].masterClientId == info.masterClientId)
+                {
+                    return;
+                }
+            }
+            
             ListItem listItem = Instantiate(_roomRowPrefab, _roomsList);
+            
             if (listItem != null)
             {
                 listItem.SetInfo(info);
+                _allRoomsInfo.Add(info);
             }
         }
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Main");
+    }
+
+    public void JoinRandRoom()
+    {
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.LoadLevel("MainMenu");
+
     }
 }
