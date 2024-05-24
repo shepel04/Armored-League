@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a13247c-4367-4df9-8025-5bdf390839e7" name="Changes" comment="" />
+    <list default="true" id="6a13247c-4367-4df9-8025-5bdf390839e7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Armored League/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Armored League/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/league_tank.blend" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/league_tank.blend.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/InputSystem/InputAction.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InputSystem/InputAction.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/FirstPersonController/InputSystem/FirstPersonInputs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/FirstPersonController/InputSystem/FirstPersonInputs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/FirstPersonController/Mobile/UI/UI_Cirkle_Graph.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/FirstPersonController/Mobile/UI/UI_Cirkle_Graph.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/BiplanarMapping/BiplanarShader.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/BiplanarMapping/BiplanarShader.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/FullscreenTransition_Graph.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/FullscreenTransition_Graph.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/QuantizeScreenSpaceTest.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/QuantizeScreenSpaceTest.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/TriplanarDissolve_Graph.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/TriplanarDissolve_Graph.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/Water.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/Water.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/WaterCausticsDecal.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/WaterCausticsDecal.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/WetnessDecal.shadergraph.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/Shaders/WetnessDecal.shadergraph.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,10 +32,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GeneralVariables.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/InGameInputHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TankCameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Unity.InputSystem.asmdef" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.9/Runtime/ScriptableRendererData.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/GridLayoutGroupEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Downloads/EasySuspension/Editor/BoxyCarWizard.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fc1a0556e49244d7a68d63b625fb5ec2173e00/88/e6c4528c/Mesh.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -30,28 +53,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.build.unityPlugin",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Shepel-branch&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.build.unityPlugin&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/macbook/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/macbook/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/macbook/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/macbook/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/macbook/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/macbook/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="$PROJECT_DIR$/../TestBuilds/Armored League/1.app/Contents/MacOS/Armored League" />
@@ -111,6 +134,16 @@
       <workItem from="1716363399842" duration="1000" />
       <workItem from="1716364170420" duration="6379000" />
       <workItem from="1716407110864" duration="1296000" />
+      <workItem from="1716456000379" duration="537000" />
+      <workItem from="1716456607074" duration="10000" />
+      <workItem from="1716456623397" duration="357000" />
+      <workItem from="1716458617893" duration="957000" />
+      <workItem from="1716468418491" duration="197000" />
+      <workItem from="1716468690258" duration="19000" />
+      <workItem from="1716468744147" duration="530000" />
+      <workItem from="1716469335373" duration="1901000" />
+      <workItem from="1716487677031" duration="1111000" />
+      <workItem from="1716536596799" duration="9495000" />
     </task>
     <servers />
   </component>

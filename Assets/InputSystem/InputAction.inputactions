@@ -28,6 +28,82 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Player",
+            "id": "73a00339-3aae-4873-90ec-abdad96eade8",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "28c8c1f9-598b-4199-8a90-0e65202eaa25",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "7a1bc601-c4c7-4398-8e11-8038d9bc90d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a58a5546-e67a-4958-957c-5ac43aca4a3f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0600a469-46ca-4763-98a0-0cc57a21565a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "TankControls",
+            "id": "f9991512-85b3-4804-8ec3-83ceb6cb09e0",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "c581bbcc-70af-4cfb-a704-8c1b004b9777",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "517027e1-8832-4712-a9ac-43d7bb3c37b3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
