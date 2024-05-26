@@ -37,22 +37,27 @@ public class TankCameraController : MonoBehaviour
             // angle camera limit
             _y = ClampAngle(_y, YMinLimit, YMaxLimit);
 
-            // current camera position
-            Quaternion rotation = Quaternion.Euler(_y, _x, 0);
+            // handle distance and collisions
             Distance = Mathf.Clamp(Distance - Input.GetAxis("Mouse ScrollWheel") * 5, DistanceMin, DistanceMax);
 
-            // checking collision with other objects
+            // calculate desired position
+            Quaternion rotation = Quaternion.Euler(_y, _x, 0);
+            Vector3 desiredPosition = rotation * new Vector3(0.0f, 0.0f, -Distance) + Target.position;
+
+            // check for collisions
             RaycastHit hit;
-            if (Physics.Linecast(Target.position, transform.position, out hit))
+            if (Physics.Linecast(Target.position, desiredPosition, out hit))
             {
-                Distance -= hit.distance;
+                // set distance to the point of collision
+                Distance = Vector3.Distance(Target.position, hit.point) - 0.2f; // subtract a small offset to prevent clipping
             }
 
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -Distance);
-            Vector3 position = rotation * negDistance + Target.position;
+            // recalculate position based on the new distance
+            Vector3 finalPosition = rotation * new Vector3(0.0f, 0.0f, -Distance) + Target.position;
 
+            // update camera position and rotation
             transform.rotation = rotation;
-            transform.position = position;
+            transform.position = finalPosition;
         }
     }
 

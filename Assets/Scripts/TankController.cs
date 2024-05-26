@@ -6,7 +6,7 @@ public class TankController : MonoBehaviour
     public float BrakeTorque = 5000f;
     public float MaxSpeed = 60f;
     public float TurnSpeed = 1000f;
-    public float TurnInPlaceSpeedMultiplier = 3f; // Змінна для множника швидкості повороту на місці
+    public float TurnInPlaceSpeedMultiplier = 3f;  
 
     public WheelCollider[] LeftWheels;
     public WheelCollider[] RightWheels;
@@ -28,6 +28,7 @@ public class TankController : MonoBehaviour
     {
         float moveInput = Input.GetAxis("Vertical");
         float turnInput = Input.GetAxis("Horizontal");
+        bool isHandBrake = Input.GetKey(KeyCode.Space);  // Check if space is pressed for hand brake
 
         // Speed limit
         float speed = _rb.velocity.magnitude;
@@ -50,7 +51,7 @@ public class TankController : MonoBehaviour
             leftTorque = turnAdjustment;
             rightTorque = -turnAdjustment;
 
-            // Zmenshuye friktsiyu pid chas povorotu na mistsi
+            // change friction
             SetWheelFriction(TurnForwardFriction, TurnSidewaysFriction);
         }
         else
@@ -64,6 +65,13 @@ public class TankController : MonoBehaviour
                 leftTorque += turnAdjustment;
                 rightTorque -= turnAdjustment;
             }
+        }
+
+        // Correcting the torque for reverse direction
+        if (moveInput < 0)
+        {
+            leftTorque = moveInput * MotorTorque - turnInput * TurnSpeed;
+            rightTorque = moveInput * MotorTorque + turnInput * TurnSpeed;
         }
 
         // Apply forces to left wheels
@@ -81,7 +89,11 @@ public class TankController : MonoBehaviour
         }
 
         // Fast braking
-        if (moveInput == 0 && turnInput == 0)
+        if (isHandBrake)
+        {
+            ApplyBrakes();
+        }
+        else if (moveInput == 0 && turnInput == 0)
         {
             ApplyBrakes();
         }
