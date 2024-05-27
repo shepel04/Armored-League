@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
-public class TankShooting : MonoBehaviour
+public class TankShooting : MonoBehaviourPunCallbacks
 {
     public float Range = 100f;  
     public float FireForce = 500f;   
@@ -9,13 +11,16 @@ public class TankShooting : MonoBehaviour
     public float RecoilForce = 10f;   
     public Transform FirePoint; 
     public Transform Tank;
-    private bool _canShoot = true;  
-
+    private bool _canShoot = true;
+    
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && _canShoot)
+        if (photonView.IsMine)
         {
-            Shoot();
+            if (Input.GetButtonDown("Fire1") && _canShoot)
+            {
+                Shoot();
+            }
         }
     }
 

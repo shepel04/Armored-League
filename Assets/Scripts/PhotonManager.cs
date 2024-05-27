@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using Quaternion = UnityEngine.Quaternion;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -16,11 +19,25 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private Transform _roomsList;
 
     private List<RoomInfo> _allRoomsInfo = new List<RoomInfo>();
-
+    private GameObject _player;
+    [SerializeField] private GameObject PlayerPref;
     private void Start()
     {
-        PhotonNetwork.ConnectUsingSettings();
-        PhotonNetwork.ConnectToRegion(_region);
+        if (!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.ConnectToRegion(_region);
+        }
+        
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+            _player = PhotonNetwork.Instantiate(PlayerPref.name, new Vector3(0, 1, 0), Quaternion.identity);
+        }
+        
+        if (_player != null)
+        {
+            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        }
     }
 
     public override void OnConnectedToMaster()
@@ -58,6 +75,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnCreatedRoom()
     {
+        //_player = PhotonNetwork.Instantiate(PlayerPref.name, new Vector3(0,1,0), Quaternion.identity);
         Debug.Log("Room " + PhotonNetwork.CurrentRoom.Name + " created!");
         PhotonNetwork.LoadLevel("Main");
     }
@@ -92,6 +110,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Main");
+        
+        
+        
+        
     }
 
     public void JoinRandRoom()
@@ -106,7 +128,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
+        PhotonNetwork.Destroy(_player.gameObject);
         PhotonNetwork.LoadLevel("MainMenu");
-
+    
     }
 }

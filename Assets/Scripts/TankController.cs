@@ -1,6 +1,7 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class TankController : MonoBehaviour
+public class TankController : MonoBehaviourPunCallbacks
 {
     public float MotorTorque = 1000f;
     public float BrakeTorque = 5000f;
@@ -20,86 +21,93 @@ public class TankController : MonoBehaviour
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        SetWheelFriction(ForwardFriction, SidewaysFriction);
+        if (photonView.IsMine)
+        {
+            Debug.Log("Mine");
+            _rb = GetComponent<Rigidbody>();
+            SetWheelFriction(ForwardFriction, SidewaysFriction);
+        }
     }
 
     void FixedUpdate()
     {
-        float moveInput = Input.GetAxis("Vertical");
-        float turnInput = Input.GetAxis("Horizontal");
-        bool isHandBrake = Input.GetKey(KeyCode.Space);  // Check if space is pressed for hand brake
-
-        // Speed limit
-        float speed = _rb.velocity.magnitude;
-        if (speed > MaxSpeed)
+        if (photonView.IsMine)
         {
-            _rb.velocity = _rb.velocity.normalized * MaxSpeed;
-        }
+            float moveInput = Input.GetAxis("Vertical");
+            float turnInput = Input.GetAxis("Horizontal");
+            bool isHandBrake = Input.GetKey(KeyCode.Space);
 
-        // Forward/back movement
-        float currentMotorTorque = moveInput * MotorTorque;
-
-        // Stay rotation
-        float leftTorque = currentMotorTorque;
-        float rightTorque = currentMotorTorque;
-
-        if (moveInput == 0 && turnInput != 0)
-        {
-            // stay turn
-            float turnAdjustment = turnInput * TurnSpeed * TurnInPlaceSpeedMultiplier;  
-            leftTorque = turnAdjustment;
-            rightTorque = -turnAdjustment;
-
-            // change friction
-            SetWheelFriction(TurnForwardFriction, TurnSidewaysFriction);
-        }
-        else
-        {
-            // Reset friction when not turning in place
-            SetWheelFriction(ForwardFriction, SidewaysFriction);
-
-            if (turnInput != 0)
+            // Speed limit
+            float speed = _rb.velocity.magnitude;
+            if (speed > MaxSpeed)
             {
-                float turnAdjustment = turnInput * TurnSpeed;
-                leftTorque += turnAdjustment;
-                rightTorque -= turnAdjustment;
+                _rb.velocity = _rb.velocity.normalized * MaxSpeed;
             }
-        }
 
-        // Correcting the torque for reverse direction
-        if (moveInput < 0)
-        {
-            leftTorque = moveInput * MotorTorque - turnInput * TurnSpeed;
-            rightTorque = moveInput * MotorTorque + turnInput * TurnSpeed;
-        }
+            // Forward/back movement
+            float currentMotorTorque = moveInput * MotorTorque;
 
-        // Apply forces to left wheels
-        foreach (WheelCollider wheel in LeftWheels)
-        {
-            wheel.motorTorque = leftTorque;
-            wheel.brakeTorque = (moveInput == 0 && turnInput == 0) ? BrakeTorque : 0f;
-        }
+            // Stay rotation
+            float leftTorque = currentMotorTorque;
+            float rightTorque = currentMotorTorque;
 
-        // Apply forces to right wheels
-        foreach (WheelCollider wheel in RightWheels)
-        {
-            wheel.motorTorque = rightTorque;
-            wheel.brakeTorque = (moveInput == 0 && turnInput == 0) ? BrakeTorque : 0f;
-        }
+            if (moveInput == 0 && turnInput != 0)
+            {
+                // stay turn
+                float turnAdjustment = turnInput * TurnSpeed * TurnInPlaceSpeedMultiplier;
+                leftTorque = turnAdjustment;
+                rightTorque = -turnAdjustment;
 
-        // Fast braking
-        if (isHandBrake)
-        {
-            ApplyBrakes();
-        }
-        else if (moveInput == 0 && turnInput == 0)
-        {
-            ApplyBrakes();
-        }
-        else
-        {
-            ReleaseBrakes();
+                // change friction
+                SetWheelFriction(TurnForwardFriction, TurnSidewaysFriction);
+            }
+            else
+            {
+                // Reset friction when not turning in place
+                SetWheelFriction(ForwardFriction, SidewaysFriction);
+
+                if (turnInput != 0)
+                {
+                    float turnAdjustment = turnInput * TurnSpeed;
+                    leftTorque += turnAdjustment;
+                    rightTorque -= turnAdjustment;
+                }
+            }
+
+            // Correcting the torque for reverse direction
+            if (moveInput < 0)
+            {
+                leftTorque = moveInput * MotorTorque - turnInput * TurnSpeed;
+                rightTorque = moveInput * MotorTorque + turnInput * TurnSpeed;
+            }
+
+            // Apply forces to left wheels
+            foreach (WheelCollider wheel in LeftWheels)
+            {
+                wheel.motorTorque = leftTorque;
+                wheel.brakeTorque = (moveInput == 0 && turnInput == 0) ? BrakeTorque : 0f;
+            }
+
+            // Apply forces to right wheels
+            foreach (WheelCollider wheel in RightWheels)
+            {
+                wheel.motorTorque = rightTorque;
+                wheel.brakeTorque = (moveInput == 0 && turnInput == 0) ? BrakeTorque : 0f;
+            }
+
+            // Fast braking
+            if (isHandBrake)
+            {
+                ApplyBrakes();
+            }
+            else if (moveInput == 0 && turnInput == 0)
+            {
+                ApplyBrakes();
+            }
+            else
+            {
+                ReleaseBrakes();
+            }
         }
     }
 

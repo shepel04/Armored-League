@@ -1,6 +1,8 @@
+using System;
+using Photon.Pun;
 using UnityEngine;
 
-public class TurretController : MonoBehaviour
+public class TurretController : MonoBehaviourPunCallbacks
 {
     public Transform CameraTransform;
     public Transform TankBodyTransform;
@@ -8,7 +10,10 @@ public class TurretController : MonoBehaviour
 
     void Update()
     {
-        RotateTurret();
+        if (photonView.IsMine)
+        {
+            RotateTurret();
+        }
     }
 
     void RotateTurret()
