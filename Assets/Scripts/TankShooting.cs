@@ -12,7 +12,16 @@ public class TankShooting : MonoBehaviourPunCallbacks
     public Transform FirePoint; 
     public Transform Tank;
     private bool _canShoot = true;
-    
+    private Rigidbody _tankRigidbody;
+
+    private void Start()
+    {
+        if (photonView.IsMine)
+        {
+            _tankRigidbody = Tank.GetComponent<Rigidbody>();
+        }
+    }
+
     void Update()
     {
         if (photonView.IsMine)
@@ -48,8 +57,8 @@ public class TankShooting : MonoBehaviourPunCallbacks
         }
 
         // apply recoil
-        Rigidbody tankRigidbody = Tank.GetComponent<Rigidbody>();
-        tankRigidbody.AddForce(-transform.forward * RecoilForce, ForceMode.Impulse);
+        
+        _tankRigidbody.AddForce(-transform.forward * RecoilForce, ForceMode.Impulse);
 
         // cooldown
         StartCoroutine(ShotCooldown());
