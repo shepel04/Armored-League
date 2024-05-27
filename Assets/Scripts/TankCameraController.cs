@@ -1,6 +1,7 @@
+using Photon.Pun;
 using UnityEngine;
 
-public class TankCameraController : MonoBehaviour
+public class TankCameraController : MonoBehaviourPunCallbacks
 {
     public Transform Target; 
     public float Distance = 10.0f; 
@@ -17,42 +18,57 @@ public class TankCameraController : MonoBehaviour
 
     void Start()
     {
-        Vector3 angles = transform.eulerAngles;
-        _x = angles.y;
-        _y = angles.x;
-
-        if (GetComponent<Rigidbody>())
+        if (photonView.IsMine)
         {
-            GetComponent<Rigidbody>().freezeRotation = true;
+            Vector3 angles = transform.eulerAngles;
+            _x = angles.y;
+            _y = angles.x;
+
+            if (GetComponent<Rigidbody>())
+            {
+                GetComponent<Rigidbody>().freezeRotation = true;
+            }
+        }
+        else
+        {
+            // disable camera
         }
     }
 
     void LateUpdate()
     {
-        if (Target)
+        if (photonView.IsMine)
         {
-            _x += Input.GetAxis("Mouse X") * XSpeed * Distance * 0.02f;
-            _y -= Input.GetAxis("Mouse Y") * YSpeed * 0.02f;
-
-            // angle camera limit
-            _y = ClampAngle(_y, YMinLimit, YMaxLimit);
-
-            // current camera position
-            Quaternion rotation = Quaternion.Euler(_y, _x, 0);
-            Distance = Mathf.Clamp(Distance - Input.GetAxis("Mouse ScrollWheel") * 5, DistanceMin, DistanceMax);
-
-            // checking collision with other objects
-            RaycastHit hit;
-            if (Physics.Linecast(Target.position, transform.position, out hit))
+            if (Target)
             {
-                Distance -= hit.distance;
+                _x += Input.GetAxis("Mouse X") * XSpeed * Distance * 0.02f;
+                _y -= Input.GetAxis("Mouse Y") * YSpeed * 0.02f;
+
+                // angle camera limit
+                _y = ClampAngle(_y, YMinLimit, YMaxLimit);
+
+                // handle distance and collisions
+                Distance = Mathf.Clamp(Distance - Input.GetAxis("Mouse ScrollWheel") * 5, DistanceMin, DistanceMax);
+
+                // calculate desired position
+                Quaternion rotation = Quaternion.Euler(_y, _x, 0);
+                Vector3 desiredPosition = rotation * new Vector3(0.0f, 0.0f, -Distance) + Target.position;
+
+                // check for collisions
+                RaycastHit hit;
+                if (Physics.Linecast(Target.position, desiredPosition, out hit))
+                {
+                    // set distance to the point of collision
+                    Distance = Vector3.Distance(Target.position, hit.point) - 0.2f; // subtract a small offset to prevent clipping
+                }
+
+                // recalculate position based on the new distance
+                Vector3 finalPosition = rotation * new Vector3(0.0f, 0.0f, -Distance) + Target.position;
+
+                // update camera position and rotation
+                transform.rotation = rotation;
+                transform.position = finalPosition;
             }
-
-            Vector3 negDistance = new Vector3(0.0f, 0.0f, -Distance);
-            Vector3 position = rotation * negDistance + Target.position;
-
-            transform.rotation = rotation;
-            transform.position = position;
         }
     }
 

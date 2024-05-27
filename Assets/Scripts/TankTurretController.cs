@@ -1,18 +1,37 @@
+using System;
+using Photon.Pun;
 using UnityEngine;
 
-public class TankTurretController : MonoBehaviour
+public class TurretController : MonoBehaviourPunCallbacks
 {
-    public Transform Turret;
-    public Camera MainCamera;
-    public float RotationSpeed = 100f;  
+    public Transform CameraTransform;
+    public Transform TankBodyTransform;
+    public float RotationSpeed = 5f;
 
-    void LateUpdate()
+    void Update()
     {
-        Vector3 cameraDirection = MainCamera.transform.forward;
-        cameraDirection.y = 0f;
+        if (photonView.IsMine)
+        {
+            RotateTurret();
+        }
+    }
 
-        Quaternion targetRotation = Quaternion.LookRotation(cameraDirection);
+    void RotateTurret()
+    {
+        Vector3 directionToTarget = CameraTransform.forward;
 
-        Turret.rotation = Quaternion.RotateTowards(Turret.rotation, targetRotation, RotationSpeed * Time.deltaTime * 50f);
+        directionToTarget.y = 0;
+
+        if (directionToTarget != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+
+            float bodyXRotation = TankBodyTransform.eulerAngles.x;
+            float bodyZRotation = TankBodyTransform.eulerAngles.z;
+
+            Quaternion turretRotation = Quaternion.Euler(bodyXRotation, targetRotation.eulerAngles.y, bodyZRotation);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, turretRotation, RotationSpeed * Time.deltaTime);
+        }
     }
 }
