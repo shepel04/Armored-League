@@ -6,14 +6,23 @@
   <component name="ChangeListManager">
     <list default="true" id="6a13247c-4367-4df9-8025-5bdf390839e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Armored League/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Armored League/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game Buffs/Free Stylized Textures/Textures/Ancient_Cobblestone_5/Ancient_Cobblestone_5.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game Buffs/Free Stylized Textures/Textures/Ancient_Cobblestone_5/Ancient_Cobblestone_5.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/Tank.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/Tank.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/league_tank-2.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/league_tank-2.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/left_trackAction.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/left_trackAction.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/left_track_planes 1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/left_track_planes 1.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/left_track_planes.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/left_track_planes.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/right_trackAction.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/right_trackAction.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Models/right_track_planes_right_track_planes_unit_Dupli_19.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Models/right_track_planes_right_track_planes_unit_Dupli_19.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tank.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tank.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhotonManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhotonManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TankCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TankCameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TankController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TankController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralVariables.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GeneralVariables.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TankShooting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TankShooting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TankTurretController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TankTurretController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TrackDeform.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TrackDeform.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/TextMeshPro/Resources/FontsAndMaterials/LiberationSansSDF-Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/TextMeshPro/Resources/FontsAndMaterials/LiberationSansSDF-Fallback.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +153,7 @@
       <workItem from="1716634468200" duration="11189000" />
       <workItem from="1716750391772" duration="110000" />
       <workItem from="1716750526253" duration="3201000" />
-      <workItem from="1716792386911" duration="1612000" />
+      <workItem from="1716792386911" duration="3278000" />
     </task>
     <servers />
   </component>
