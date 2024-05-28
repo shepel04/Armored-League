@@ -8,11 +8,15 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+
+
 using Quaternion = UnityEngine.Quaternion;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private string _region = "eu";
+    [SerializeField] private TMP_InputField _accountNameInputField;
+    [SerializeField] private TMP_InputField _accountPasswordInputField;
     [SerializeField] private TMP_InputField _roomNameInputField;
     [SerializeField] private TMP_Dropdown _playersAmountDropdown;
     [SerializeField] private ListItem _roomRowPrefab;
@@ -39,6 +43,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             _player.GetComponent<PlayerSetup>().IsLocalPlayer();
         }
     }
+
+   
+
 
     public override void OnConnectedToMaster()
     {
