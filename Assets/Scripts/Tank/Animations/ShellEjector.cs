@@ -10,6 +10,7 @@ namespace Tank.Animations
 
         public Transform leftEjectionEmpty;
         public Transform rightEjectionEmpty;
+        public float EjectionForce = 1; 
 
         private int sideIndex;
 
@@ -58,7 +59,7 @@ namespace Tank.Animations
             else
                 vectorSide = Vector3.right;
             rb.AddRelativeForce(
-                Quaternion.Euler(0, turret.transform.localRotation.y, 0) * vectorSide * 10,
+                Quaternion.Euler(0, turret.transform.localRotation.y, 0) * vectorSide * EjectionForce,
                 ForceMode.Impulse);
         }
     }
