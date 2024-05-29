@@ -1,49 +1,45 @@
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+public class SmoothCameraTransition : MonoBehaviour
 {
-    public Transform startTransform; // Початкова позиція камери
-    public Transform endTransform; // Кінцева позиція камери
-    public float moveSpeed = 1.0f; // Швидкість переміщення камери
-    public float rotateSpeed = 1.0f; // Швидкість повороту камери
+    public Transform StartTransform;  
+    public Transform EndTransform;  
+    public float MoveSpeed = 1.0f;  
 
-    private bool isMoving = false; // Прапорець, який вказує, чи камера зараз знаходиться в русі
-    private float startTime; // Час початку руху
-    private Transform originalEndTransform; // Оригінальна кінцева позиція камери
+    private bool _isMoving;  
+    private float _startTime;  
+    private Transform _originalEndTransform;  
 
     void Start()
     {
-        originalEndTransform = endTransform;
+        _originalEndTransform = EndTransform;
+    }
+
+    public void StartMoving()
+    {
+        _startTime = Time.time;
+        _isMoving = true;
     }
 
     void Update()
     {
-        // Перевіряємо, чи натиснута клавіша пробілу і камера не знаходиться в русі
-        if (Input.GetKeyDown(KeyCode.Space) && !isMoving)
+        if (_isMoving)
         {
-            // Позначаємо початок руху та встановлюємо прапорець, що камера рухається
-            startTime = Time.time;
-            isMoving = true;
-        }
+            float JourneyLength = Vector3.Distance(StartTransform.position, _originalEndTransform.position); // Distance to travel
+            float DistanceCovered = (Time.time - _startTime) * MoveSpeed; // Distance covered 
+            float FracJourney = DistanceCovered / JourneyLength; // Percentage of journey completed
 
-        // Якщо камера в русі, переміщуємо її плавно
-        if (isMoving)
-        {
-            float journeyLength = Vector3.Distance(startTransform.position, originalEndTransform.position); // Відстань, яку треба подолати
-            float distanceCovered = (Time.time - startTime) * moveSpeed; // Відстань, пройдена за час руху
-            float fracJourney = distanceCovered / journeyLength; // Пройдений відсоток від загальної відстані
+            transform.position = Vector3.Lerp(StartTransform.position, _originalEndTransform.position, FracJourney);  
+            transform.rotation = Quaternion.Slerp(StartTransform.rotation, _originalEndTransform.rotation, FracJourney);
 
-            transform.position = Vector3.Lerp(startTransform.position, originalEndTransform.position, fracJourney); // Плавне переміщення камери
-            transform.rotation = Quaternion.Slerp(startTransform.rotation, originalEndTransform.rotation, fracJourney); // Плавний поворот камери
-
-            // Якщо камера досягла кінцевої позиції, закінчуємо рух
-            if (distanceCovered >= journeyLength)
+            // stop
+            if (DistanceCovered >= JourneyLength)
             {
-                isMoving = false;
-                // Після закінчення руху змінюємо початкову позицію на кінцеву і навпаки
-                Transform tempTransform = startTransform;
-                startTransform = originalEndTransform;
-                originalEndTransform = tempTransform;
+                _isMoving = false;
+                // swap
+                Transform TempTransform = StartTransform;
+                StartTransform = _originalEndTransform;
+                _originalEndTransform = TempTransform;
             }
         }
     }
