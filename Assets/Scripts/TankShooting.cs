@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TankShooting : MonoBehaviourPunCallbacks
 {
+    public event Action Shot; // shooting animation event
+
     public float Range = 100f;  
     public float FireForce = 500f;   
     public float Cooldown = 0.5f;  
@@ -29,6 +31,7 @@ public class TankShooting : MonoBehaviourPunCallbacks
             if (Input.GetButtonDown("Fire1") && _canShoot)
             {
                 Shoot();
+                Shot?.Invoke(); // barrel animation trigger
             }
         }
     }

@@ -1,8 +1,14 @@
 using Photon.Pun;
+using System;
 using UnityEngine;
 
 public class TankController : MonoBehaviourPunCallbacks
 {
+    public event Action<bool> EngineLaden; // engine radiators animation event
+
+    public event Action<float> LeftTrackMoved; // left track animation event
+    public event Action<float> RightTrackMoved; // right track animation event
+
     public float MotorTorque = 1000f;
     public float BrakeTorque = 5000f;
     public float MaxSpeed = 60f;
@@ -36,6 +42,16 @@ public class TankController : MonoBehaviourPunCallbacks
             float moveInput = Input.GetAxis("Vertical");
             float turnInput = Input.GetAxis("Horizontal");
             bool isHandBrake = Input.GetKey(KeyCode.Space);
+
+            // radiator animation influencer
+            if (moveInput != 0 || turnInput != 0)
+            {
+                EngineLaden?.Invoke(true);
+            }
+            else
+            {
+                EngineLaden?.Invoke(false);
+            }
 
             // Speed limit
             float speed = _rb.velocity.magnitude;
@@ -82,18 +98,28 @@ public class TankController : MonoBehaviourPunCallbacks
             }
 
             // Apply forces to left wheels
+            float rpmAverageLeft = 0.0f;
             foreach (WheelCollider wheel in LeftWheels)
             {
                 wheel.motorTorque = leftTorque;
                 wheel.brakeTorque = (moveInput == 0 && turnInput == 0) ? BrakeTorque : 0f;
+
+                rpmAverageLeft += wheel.rpm;
             }
+            rpmAverageLeft /= 4.0f;
+            LeftTrackMoved?.Invoke(rpmAverageLeft); // event invocation for animation adjusting
 
             // Apply forces to right wheels
+            float rpmAverageRight = 0.0f;
             foreach (WheelCollider wheel in RightWheels)
             {
                 wheel.motorTorque = rightTorque;
                 wheel.brakeTorque = (moveInput == 0 && turnInput == 0) ? BrakeTorque : 0f;
+
+                rpmAverageRight += wheel.rpm;
             }
+            rpmAverageRight /= 4.0f;
+            RightTrackMoved?.Invoke(rpmAverageRight); // event invocation for animation adjusting
 
             // Fast braking
             if (isHandBrake)
@@ -102,7 +128,8 @@ public class TankController : MonoBehaviourPunCallbacks
             }
             else if (moveInput == 0 && turnInput == 0)
             {
-                ApplyBrakes();
+                //ApplyBrakes();
+                ReleaseBrakes();
             }
             else
             {
