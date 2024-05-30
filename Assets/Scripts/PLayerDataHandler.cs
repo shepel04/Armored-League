@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class PlayerNickname : MonoBehaviour
+public class PlayerDataHandler : MonoBehaviour
 {
     public TMP_Text NicknameText; 
 

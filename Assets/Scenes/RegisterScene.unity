@@ -5387,7 +5387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1897853740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5407,6 +5407,7 @@ MonoBehaviour:
   _playersAmountDropdown: {fileID: 0}
   _roomRowPrefab: {fileID: 0}
   _roomsList: {fileID: 0}
+  _playerNickText: {fileID: 0}
   PlayerPref: {fileID: 0}
 --- !u!4 &1897853741
 Transform:

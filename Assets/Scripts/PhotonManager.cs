@@ -33,15 +33,15 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectToRegion(_region);
         }
         
-        if (SceneManager.GetActiveScene().name == "Main")
-        {
-            _player = PhotonNetwork.Instantiate(PlayerPref.name, new Vector3(0, 1, 0), Quaternion.identity);
-        }
+        // if (SceneManager.GetActiveScene().name == "Main")
+        // {
+        //     _player = PhotonNetwork.Instantiate(PlayerPref.name, new Vector3(0, 1, 0), Quaternion.identity);
+        // }
         
-        if (_player != null)
-        {
-            _player.GetComponent<PlayerSetup>().IsLocalPlayer();
-        }
+        // if (_player != null)
+        // {
+        //     _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+        // }
     }
 
    

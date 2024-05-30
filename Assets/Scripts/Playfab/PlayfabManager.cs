@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using PlayFab;
@@ -73,7 +74,28 @@ public class PlayfabManager : MonoBehaviour
     
     private void OnLoginSuccess(LoginResult result)
     {
+        var request = new GetAccountInfoRequest();
+        PlayFabClientAPI.GetAccountInfo(request, OnGetAccountInfoSuccess, OnGetAccountInfoFailure);
+        
         SceneManager.LoadScene(1); // load main menu
+    }
+    
+    void OnGetAccountInfoSuccess(GetAccountInfoResult result)
+    {
+        string nickname = result.AccountInfo.TitleInfo.DisplayName;
+        if (string.IsNullOrEmpty(nickname))
+        {
+            nickname = result.AccountInfo.Username;
+        }
+
+       PhotonNetwork.NickName = nickname;
+       
+       Debug.Log("Player nickname: " + PhotonNetwork.NickName);
+    }
+    
+    void OnGetAccountInfoFailure(PlayFabError error)
+    {
+        Debug.LogError("Information error: " + error.GenerateErrorReport());
     }
 
     private void OnLoginFailure(PlayFabError error)
