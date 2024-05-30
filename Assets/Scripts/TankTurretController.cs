@@ -8,6 +8,13 @@ public class TurretController : MonoBehaviourPunCallbacks
     public Transform TankBodyTransform;
     public float RotationSpeed = 5f;
 
+    private float lastBodyRotationY;
+
+    void Start()
+    {
+        lastBodyRotationY = TankBodyTransform.rotation.eulerAngles.y;
+    }
+
     void Update()
     {
         if (photonView.IsMine)
@@ -18,20 +25,27 @@ public class TurretController : MonoBehaviourPunCallbacks
 
     void RotateTurret()
     {
-        Vector3 directionToTarget = CameraTransform.forward;
+        float currentBodyRotationY = TankBodyTransform.rotation.eulerAngles.y;
 
-        directionToTarget.y = 0;
+        // set turret rotation correction by body rotation
+        transform.localRotation =
+            Quaternion.Euler(
+                0,
+                transform.localRotation.eulerAngles.y -
+                    (currentBodyRotationY - lastBodyRotationY),
+                0);
 
-        if (directionToTarget != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        lastBodyRotationY = currentBodyRotationY;
 
-            float bodyXRotation = TankBodyTransform.eulerAngles.x;
-            float bodyZRotation = TankBodyTransform.eulerAngles.z;
-
-            Quaternion turretRotation = Quaternion.Euler(bodyXRotation, targetRotation.eulerAngles.y, bodyZRotation);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, turretRotation, RotationSpeed * Time.deltaTime);
-        }
+        // set interpolated turret rotation
+        transform.localRotation = 
+            Quaternion.Slerp(
+                transform.localRotation,
+                Quaternion.Euler(
+                    0, 
+                    CameraTransform.rotation.eulerAngles.y -
+                        currentBodyRotationY,
+                    0),
+                RotationSpeed * Time.deltaTime);
     }
 }

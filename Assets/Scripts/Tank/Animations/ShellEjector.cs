@@ -10,7 +10,12 @@ namespace Tank.Animations
 
         public Transform leftEjectionEmpty;
         public Transform rightEjectionEmpty;
-        public float EjectionForce = 1; 
+
+        public float shellMass = 0.1f;
+        public float shellDrag = 0.0f;
+        public float shellAngularDrag = 2.0f;
+
+        public float ejectionForce = 1; 
 
         private int sideIndex;
 
@@ -45,9 +50,9 @@ namespace Tank.Animations
         {
             // add rigidbody
             Rigidbody rb = shellInstance.AddComponent<Rigidbody>();
-            rb.mass = 1.0f;
-            rb.drag = 0.0f;
-            rb.angularDrag = 2.0f;
+            rb.mass = shellMass;
+            rb.drag = shellDrag;
+            rb.angularDrag = shellAngularDrag;
 
             // remove from parent
             shellInstance.transform.parent = null;
@@ -59,7 +64,7 @@ namespace Tank.Animations
             else
                 vectorSide = Vector3.right;
             rb.AddRelativeForce(
-                Quaternion.Euler(0, turret.transform.localRotation.y, 0) * vectorSide * EjectionForce,
+                Quaternion.Euler(0, turret.transform.localRotation.y, 0) * vectorSide * ejectionForce,
                 ForceMode.Impulse);
         }
     }
