@@ -9,16 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.588293
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.39
+      value: 2.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 12.085563
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -91,6 +103,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2818400934364227659}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5572609988720225628}
   m_SourcePrefab: {fileID: 100100000, guid: 173a9f6f53e5146969ec8c562d4c7ed7, type: 3}
 --- !u!1 &4458190272538503380 stripped
 GameObject:
@@ -140,7 +155,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -201,3 +216,15 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 0
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!75 &5572609988720225628
+ConstantForce:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4458190272538503380}
+  m_Enabled: 1
+  m_Force: {x: 0, y: -1.5, z: 0}
+  m_RelativeForce: {x: 0, y: 0, z: 0}
+  m_Torque: {x: 0, y: 0, z: 0}
+  m_RelativeTorque: {x: 0, y: 0, z: 0}
