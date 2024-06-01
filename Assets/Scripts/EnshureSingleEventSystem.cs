@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class EnsureSingleEventSystem : MonoBehaviour
 {
-    void Awake()
+    void Start()
     {
         EventSystem[] eventSystems = FindObjectsOfType<EventSystem>();
 
@@ -12,11 +12,11 @@ public class EnsureSingleEventSystem : MonoBehaviour
             Destroy(eventSystems[i].gameObject);
         }
 
-        if (eventSystems.Length == 0)
-        {
-            GameObject eventSystem = new GameObject("EventSystem");
-            eventSystem.AddComponent<EventSystem>();
-            eventSystem.AddComponent<StandaloneInputModule>();
-        }
+        // if (eventSystems.Length == 0)
+        // {
+        //     GameObject eventSystem = new GameObject("EventSystem");
+        //     eventSystem.AddComponent<EventSystem>();
+        //     eventSystem.AddComponent<StandaloneInputModule>();
+        // }
     }
 }
