@@ -5312,7 +5312,6 @@ GameObject:
   - component: {fileID: 4930086693590773037}
   - component: {fileID: 698835325872736249}
   - component: {fileID: 2749581542620961525}
-  - component: {fileID: -7413167889028643556}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Player
@@ -5552,21 +5551,6 @@ MonoBehaviour:
   Camera: {fileID: 6293580035052533823}
   Nick: {fileID: 8041487976902374290}
   team: 
---- !u!114 &-7413167889028643556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2290888522279932896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c68d93ca1766e4d359dc0e9cb74be7cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerRenderer: {fileID: 4120499344501975793}
-  BlueTeamMaterial: {fileID: 2100000, guid: 90bdfcc71ba7841db817a8f88b11e602, type: 2}
-  OrangeTeamMaterial: {fileID: 2100000, guid: e3a1a3625054e443cb89b18b6c8e5715, type: 2}
 --- !u!1 &2306087438905318720
 GameObject:
   m_ObjectHideFlags: 0
@@ -15542,6 +15526,7 @@ MonoBehaviour:
   YMaxLimit: 60
   DistanceMin: 0.5
   DistanceMax: 2
+  isDynamicCamera: 0
 --- !u!1 &6307302114696971834
 GameObject:
   m_ObjectHideFlags: 0
