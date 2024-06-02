@@ -78,4 +78,15 @@ public class TankShooting : MonoBehaviourPunCallbacks
         // Set canShoot back to true to allow shooting again
         _canShoot = true;
     }
+    
+    [PunRPC]
+    void ApplyForceToBall(Vector3 force, Vector3 hitPoint)
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (rb != null)
+        {
+            rb.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
+        }
+    }
 }

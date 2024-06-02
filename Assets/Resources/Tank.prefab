@@ -1767,6 +1767,8 @@ GameObject:
   - component: {fileID: 4800227786009768981}
   - component: {fileID: 4285126243833864845}
   - component: {fileID: 5906436415608886359}
+  - component: {fileID: 2477762411101413969}
+  - component: {fileID: 724296163007106360}
   m_Layer: 0
   m_Name: RightTrackHolder
   m_TagString: Untagged
@@ -1832,6 +1834,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankController: {fileID: 3479807747568559559}
+--- !u!114 &2477762411101413969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920335395747200018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 724296163007106360}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &724296163007106360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920335395747200018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 1
+    Name: speedRatio
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &935633168594733997
 GameObject:
   m_ObjectHideFlags: 0
@@ -5229,10 +5275,10 @@ GameObject:
   - component: {fileID: 4930086693590773037}
   - component: {fileID: 698835325872736249}
   - component: {fileID: 2749581542620961525}
-  - component: {fileID: 1782635212468014205}
+  - component: {fileID: -7413167889028643556}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5469,7 +5515,7 @@ MonoBehaviour:
   Camera: {fileID: 6293580035052533823}
   Nick: {fileID: 8041487976902374290}
   team: 
---- !u!114 &1782635212468014205
+--- !u!114 &-7413167889028643556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5478,10 +5524,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2290888522279932896}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e384fad072774ca88bd22400dc86f62, type: 3}
+  m_Script: {fileID: 11500000, guid: c68d93ca1766e4d359dc0e9cb74be7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTeam: 0
+  PlayerRenderer: {fileID: 4120499344501975793}
+  BlueTeamMaterial: {fileID: 2100000, guid: 90bdfcc71ba7841db817a8f88b11e602, type: 2}
+  OrangeTeamMaterial: {fileID: 2100000, guid: e3a1a3625054e443cb89b18b6c8e5715, type: 2}
 --- !u!1 &2306087438905318720
 GameObject:
   m_ObjectHideFlags: 0
@@ -11669,6 +11717,8 @@ GameObject:
   - component: {fileID: 426100597920813382}
   - component: {fileID: 3494484648799113882}
   - component: {fileID: 5735696968604880469}
+  - component: {fileID: 996481488534015500}
+  - component: {fileID: 6958035575556030106}
   m_Layer: 0
   m_Name: EngineRadiatorTopHolder
   m_TagString: Untagged
@@ -11728,6 +11778,50 @@ MonoBehaviour:
   tankController: {fileID: 3479807747568559559}
   pointsNoLaden: 1
   pointsLaden: 4
+--- !u!114 &996481488534015500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139108676164555584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 6958035575556030106}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6958035575556030106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139108676164555584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: changeState
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &5182361306543181342
 GameObject:
   m_ObjectHideFlags: 0
@@ -12508,6 +12602,8 @@ GameObject:
   - component: {fileID: 4662590879593710152}
   - component: {fileID: 4430372503360161870}
   - component: {fileID: 8318115604292977845}
+  - component: {fileID: 4859412513528737652}
+  - component: {fileID: 6200267334614825529}
   m_Layer: 0
   m_Name: TurretHolder
   m_TagString: Untagged
@@ -12585,6 +12681,56 @@ MonoBehaviour:
   ejectionForce: 0.1
   shellPrefab: {fileID: 1343650186318489303, guid: b3cafb311070fd94ba2fafd28e9c1310, type: 3}
   turret: {fileID: 3588653605772479766}
+--- !u!114 &4859412513528737652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360339770646650917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 6200267334614825529}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6200267334614825529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360339770646650917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: shoot
+  - Type: 9
+    SynchronizeType: 1
+    Name: open1
+  - Type: 9
+    SynchronizeType: 1
+    Name: open2
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &5362259889642600367
 GameObject:
   m_ObjectHideFlags: 0
@@ -14589,6 +14735,8 @@ GameObject:
   - component: {fileID: 340102990200659495}
   - component: {fileID: 880063231635502747}
   - component: {fileID: 7760947135230968699}
+  - component: {fileID: 2410734773901815545}
+  - component: {fileID: 1947504022689276652}
   m_Layer: 0
   m_Name: EngineRadiatorDownHolder
   m_TagString: Untagged
@@ -14648,6 +14796,50 @@ MonoBehaviour:
   tankController: {fileID: 3479807747568559559}
   pointsNoLaden: 1
   pointsLaden: 7
+--- !u!114 &2410734773901815545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181334877373223037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 1947504022689276652}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1947504022689276652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181334877373223037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: changeState
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &6206661168827743676
 GameObject:
   m_ObjectHideFlags: 0
@@ -21561,6 +21753,8 @@ GameObject:
   - component: {fileID: 2705107880808139621}
   - component: {fileID: 3266502192713578986}
   - component: {fileID: 8073907695651800002}
+  - component: {fileID: 2663175042572885282}
+  - component: {fileID: 2069024932727429478}
   m_Layer: 0
   m_Name: LeftTrackHolder
   m_TagString: Untagged
@@ -21626,6 +21820,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankController: {fileID: 3479807747568559559}
+--- !u!114 &2663175042572885282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749322712995648315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 2069024932727429478}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2069024932727429478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749322712995648315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 1
+    Name: speedRatio
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1 &8776529337758619403
 GameObject:
   m_ObjectHideFlags: 0

@@ -95,7 +95,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        AssignTeam();
         PhotonNetwork.LoadLevel("Main");
     }
 
@@ -114,25 +113,5 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("MainMenu");
     }
 
-    private void AssignTeam()
-    {
-        Player[] players = PhotonNetwork.PlayerList;
-        int blueTeamCount = 0;
-        int orangeTeamCount = 0;
-
-        foreach (Player player in players)
-        {
-            if (player.CustomProperties.ContainsKey(TeamProperty))
-            {
-                string team = (string)player.CustomProperties[TeamProperty];
-                if (team == "blue") blueTeamCount++;
-                else if (team == "orange") orangeTeamCount++;
-            }
-        }
-
-        string assignedTeam = blueTeamCount <= orangeTeamCount ? "blue" : "orange";
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { TeamProperty, assignedTeam } });
-
-        Debug.Log($"Assigned team {assignedTeam} to player {PhotonNetwork.LocalPlayer.NickName}");
-    }
+    
 }

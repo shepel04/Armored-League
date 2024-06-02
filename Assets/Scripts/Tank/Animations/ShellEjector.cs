@@ -1,3 +1,5 @@
+using Photon.Pun;
+using Unity.Mathematics;
 using Random = System.Random;
 using UnityEngine;
 
@@ -41,8 +43,10 @@ namespace Tank.Animations
         public void InstantiateShell()
         {
             if (sideIndex == 1)
+                //shellInstance = PhotonNetwork.Instantiate(shellPrefab.name, leftEjectionEmpty.position, quaternion.identity);
                 shellInstance = Instantiate(shellPrefab, leftEjectionEmpty);
             else
+                //shellInstance = PhotonNetwork.Instantiate(shellPrefab.name, rightEjectionEmpty.position, quaternion.identity);
                 shellInstance = Instantiate(shellPrefab, rightEjectionEmpty);
         }
         // used by animation
@@ -50,6 +54,7 @@ namespace Tank.Animations
         {
             // add rigidbody
             Rigidbody rb = shellInstance.AddComponent<Rigidbody>();
+            //Rigidbody rb = shellInstance.GetComponent<Rigidbody>();
             rb.mass = shellMass;
             rb.drag = shellDrag;
             rb.angularDrag = shellAngularDrag;
