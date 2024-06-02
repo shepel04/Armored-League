@@ -7,7 +7,6 @@ public class PlayerSetup : MonoBehaviour
     public TankController Controller;
     public GameObject Camera;
     public GameObject Nick;
-    public string team;
     
     public void IsLocalPlayer()
     {

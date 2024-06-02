@@ -5550,7 +5550,6 @@ MonoBehaviour:
   Controller: {fileID: 3479807747568559559}
   Camera: {fileID: 6293580035052533823}
   Nick: {fileID: 8041487976902374290}
-  team: 
 --- !u!1 &2306087438905318720
 GameObject:
   m_ObjectHideFlags: 0
@@ -20323,6 +20322,7 @@ GameObject:
   - component: {fileID: 1519879976975716563}
   - component: {fileID: 8626122609208902152}
   - component: {fileID: 9148415993801916325}
+  - component: {fileID: 342206955820479823}
   m_Layer: 0
   m_Name: Nick
   m_TagString: Untagged
@@ -20446,6 +20446,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &342206955820479823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041487976902374290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11bea3ccfc4494423a1e27ab43e9c093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8128220015955797842
 GameObject:
   m_ObjectHideFlags: 0
