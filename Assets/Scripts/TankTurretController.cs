@@ -15,7 +15,7 @@ public class TurretController : MonoBehaviourPunCallbacks
         lastBodyRotationY = TankBodyTransform.rotation.eulerAngles.y;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (photonView.IsMine)
         {
@@ -38,14 +38,21 @@ public class TurretController : MonoBehaviourPunCallbacks
         lastBodyRotationY = currentBodyRotationY;
 
         // set interpolated turret rotation
-        transform.localRotation = 
+        transform.localRotation =
             Quaternion.Slerp(
                 transform.localRotation,
                 Quaternion.Euler(
-                    0, 
+                    0,
                     CameraTransform.rotation.eulerAngles.y -
                         currentBodyRotationY,
                     0),
-                RotationSpeed * Time.deltaTime);
+                RotationSpeed * Time.fixedDeltaTime);
+
+        //transform.localRotation =
+        //    Quaternion.Euler(
+        //        0,
+        //        CameraTransform.rotation.eulerAngles.y -
+        //            currentBodyRotationY,
+        //        0);
     }
 }

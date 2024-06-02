@@ -16,15 +16,15 @@ public class TankBarrelController : MonoBehaviourPunCallbacks
 
     public RectTransform ActualShotPoint;
 
-    void Update()
+    void FixedUpdate()
     {
         if (photonView.IsMine)
         {
-            RotateTurret();
+            RotateBarrel();
         }
     }
 
-    private void RotateTurret()
+    private void RotateBarrel()
     {
         // ----------------------------------------------------------------- raycast area
         RaycastHit hit;
@@ -121,7 +121,7 @@ public class TankBarrelController : MonoBehaviourPunCallbacks
                         downRotationAngle),
                     0,
                     0),
-                RotationSpeed * Time.deltaTime);
+                RotationSpeed * Time.fixedDeltaTime);
         }
     }
 }

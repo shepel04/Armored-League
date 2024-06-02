@@ -11,7 +11,10 @@ public class TankCameraController : MonoBehaviourPunCallbacks
     public float YMinLimit = -20f;  
     public float YMaxLimit = 80f;  
     public float DistanceMin = 5f;  
-    public float DistanceMax = 20f;  
+    public float DistanceMax = 20f;
+
+    [Tooltip("Whether to apply dynamic distance adjustment for camera based on objects between camera and its target")]
+    public bool isDynamicCamera;
 
     private float _x = 0.0f;
     private float _y = 0.0f;

@@ -8,6 +8,7 @@ TagManager:
   - CinemachineTarget
   - ScreenCamera
   - cockpit_capitalLaser
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -24,8 +25,8 @@ TagManager:
   - MainCameraOnly
   - 
   - 
-  - 
-  - 
+  - BallProjection
+  - HideInSniperScope
   - 
   - 
   - 

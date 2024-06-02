@@ -1,5 +1,6 @@
 using Random = System.Random;
 using UnityEngine;
+using Tank.Shell;
 
 namespace Tank.Animations
 {
@@ -19,7 +20,7 @@ namespace Tank.Animations
 
         private int sideIndex;
 
-        public GameObject shellPrefab;
+        public PoolController poolController;
 
         private GameObject shellInstance;
 
@@ -40,15 +41,20 @@ namespace Tank.Animations
         // used by animation
         public void InstantiateShell()
         {
+            shellInstance = poolController.GetInstance();
+
             if (sideIndex == 1)
-                shellInstance = Instantiate(shellPrefab, leftEjectionEmpty);
+                shellInstance.transform.SetParent(leftEjectionEmpty);
             else
-                shellInstance = Instantiate(shellPrefab, rightEjectionEmpty);
+                shellInstance.transform.SetParent(rightEjectionEmpty);
+
+            shellInstance.transform.localPosition = Vector3.zero;
+            shellInstance.transform.localRotation = Quaternion.identity;
         }
         // used by animation
         public void Ejection()
         {
-            // add rigidbody
+            // enable rigidbody physics
             Rigidbody rb = shellInstance.AddComponent<Rigidbody>();
             rb.mass = shellMass;
             rb.drag = shellDrag;

@@ -1,23 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
+using Tank.Shell;
 using UnityEngine;
 
 namespace Tank.Animations
 {
     public class Shell : MonoBehaviour
     {
-        public float timeLife;
-        private float timeCurrent;
+        public PoolController poolController;
 
-        void FixedUpdate()
+        public float timeLife;
+
+        public void StartLifeCycle()
         {
-            timeCurrent += Time.fixedDeltaTime;
-            if (timeCurrent >= timeLife)
-            {
-                Destroy(gameObject);
-                // move to pool instead of destroyment -------------------------------- !!!
-                // btw, you need a pool implementation first ... ---------------------- !!!
-            }
+            StartCoroutine(SimulateLife());
+        }
+
+        private IEnumerator SimulateLife()
+        {
+            yield return new WaitForSeconds(timeLife);
+
+            poolController.DeactivateInstance(gameObject);
         }
     }
 }
