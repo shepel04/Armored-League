@@ -9,6 +9,7 @@ TagManager:
   - ScreenCamera
   - cockpit_capitalLaser
   - Ball
+  - PlayerNick
   layers:
   - Default
   - TransparentFX
