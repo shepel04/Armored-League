@@ -141,7 +141,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 17
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 852ab5e6a8d534f1589bdc8793d69309, type: 2}
@@ -307,7 +307,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 17
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 852ab5e6a8d534f1589bdc8793d69309, type: 2}
@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 7374378609694408733}
   - component: {fileID: 1651635988047427137}
   - component: {fileID: 1368821465827422303}
+  - component: {fileID: 8227386414824372892}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -486,6 +487,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c53c3331951d2014ba71df98b3f03adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8227386414824372892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4109909494483121055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c37a4f4329776f48a643e92cd220978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4447382465002560444
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +557,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 17
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 852ab5e6a8d534f1589bdc8793d69309, type: 2}

@@ -9,6 +9,8 @@ TagManager:
   - ScreenCamera
   - cockpit_capitalLaser
   - Ball
+  - Team2Goal
+  - Team1Goal
   layers:
   - Default
   - TransparentFX
