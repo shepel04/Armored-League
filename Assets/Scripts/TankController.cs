@@ -24,6 +24,7 @@ public class TankController : MonoBehaviourPunCallbacks
     public float TurnSidewaysFriction = 0.5f;
 
     private Rigidbody _rb;
+    public bool _isControllerEnabled = true;
 
     void Start()
     {
@@ -39,9 +40,17 @@ public class TankController : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            float moveInput = Input.GetAxis("Vertical");
-            float turnInput = Input.GetAxis("Horizontal");
-            bool isHandBrake = Input.GetKey(KeyCode.Space);
+            float moveInput = 0;
+            float turnInput = 0;
+            bool isHandBrake = false;
+            
+            if (_isControllerEnabled)
+            {
+                moveInput = Input.GetAxis("Vertical");
+                turnInput = Input.GetAxis("Horizontal");
+                isHandBrake = Input.GetKey(KeyCode.Space);
+            }
+            
 
             // radiator animation influencer
             if (moveInput != 0 || turnInput != 0)
@@ -138,7 +147,25 @@ public class TankController : MonoBehaviourPunCallbacks
         }
     }
 
-    private void ApplyBrakes()
+    public void StopTank()
+    {
+        foreach (WheelCollider wheel in LeftWheels)
+        {
+            wheel.motorTorque = 0f;
+            wheel.brakeTorque = float.MaxValue;
+            wheel.rotationSpeed = 0f;
+        }
+        foreach (WheelCollider wheel in RightWheels)
+        {
+            wheel.motorTorque = 0f;
+            wheel.brakeTorque = float.MaxValue;
+            wheel.rotationSpeed = 0f;
+            Debug.Log(wheel.rpm);
+
+        }
+    }
+
+    public void ApplyBrakes()
     {
         foreach (WheelCollider wheel in LeftWheels)
         {

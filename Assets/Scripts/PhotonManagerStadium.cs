@@ -24,6 +24,7 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
         {
             AssignTeam();
             SpawnPlayer();
+            CheckRoomStatus();
         }
     }
 
@@ -41,6 +42,7 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
         if (_player != null)
         {
             _player.GetComponent<PlayerSetup>().IsLocalPlayer();
+            _player.GetComponent<PlayerSetup>().PlayerTeam = team;
         }
     }
 
@@ -86,5 +88,16 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { TeamProperty, assignedTeam } });
 
         Debug.Log($"Assigned team {assignedTeam} to player {PhotonNetwork.LocalPlayer.NickName}");
+    }
+    
+    void CheckRoomStatus()
+    {
+        Debug.Log("Check room status");
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
+        {
+            photonView.RPC("StartCountdown", RpcTarget.All);
+            Debug.Log("RPC sent");
+        }
     }
 }

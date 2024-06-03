@@ -6,7 +6,6 @@ using UnityEngine;
 public class TankShooting : MonoBehaviourPunCallbacks
 {
     public event Action Shot; // shooting animation event
-
     public event Action<float> FireHeld; // ui event
     public event Action<float, float> FireReleased; // ui event
 
@@ -53,12 +52,12 @@ public class TankShooting : MonoBehaviourPunCallbacks
                 currentHoldTime += Time.deltaTime;
 
             float ratioFireForce = currentHoldTime / maxPowerHoldTime;
-            FireHeld?.Invoke(ratioFireForce); // ui change invokation
+            FireHeld?.Invoke(ratioFireForce); // ui change invocation
         }
         else if (Input.GetButtonUp("Fire1"))
         {
             float ratioFireForce = currentHoldTime / maxPowerHoldTime;
-            FireReleased?.Invoke(ratioFireForce, Cooldown); // ui change invokation
+            FireReleased?.Invoke(ratioFireForce, Cooldown); // ui change invocation
 
             Shoot(ratioFireForce);
             Shot?.Invoke(); // barrel animation trigger
@@ -71,11 +70,6 @@ public class TankShooting : MonoBehaviourPunCallbacks
     {
         Ray ray = new Ray(FirePoint.position, FirePoint.forward);
         RaycastHit hit;
-
-        //Array values = Enum.GetValues(typeof(Color));
-        //Random random = new Random();
-        //int randomIndex = random.Next(values.Length);
-        //(Color)values.GetValue(randomIndex)
 
         Debug.DrawRay(
             FirePoint.position,
@@ -90,7 +84,10 @@ public class TankShooting : MonoBehaviourPunCallbacks
 
             if (rb != null)
             {
-                GiveImpulseByHit(hit, rb, ratioFireForce);
+                PhotonView targetPhotonView = hit.collider.GetComponent<PhotonView>();
+
+                // Start a coroutine to handle ownership transfer and force application
+                StartCoroutine(TransferOwnershipAndApplyForce(targetPhotonView, hit, rb, ratioFireForce));
             }
         }
 
@@ -99,6 +96,21 @@ public class TankShooting : MonoBehaviourPunCallbacks
 
         // cooldown
         StartCoroutine(ShotCooldown());
+    }
+
+    private IEnumerator TransferOwnershipAndApplyForce(PhotonView targetPhotonView, RaycastHit hit, Rigidbody rb, float ratioFireForce)
+    {
+        // Transfer ownership to the current player
+        targetPhotonView.TransferOwnership(PhotonNetwork.LocalPlayer);
+
+        // Wait for ownership transfer to complete
+        yield return new WaitUntil(() => targetPhotonView.Owner == PhotonNetwork.LocalPlayer);
+
+        // Optional: Add a small delay to ensure ownership has propagated
+        yield return new WaitForSeconds(0.1f);
+
+        // Apply force after ownership transfer is confirmed
+        GiveImpulseByHit(hit, rb, ratioFireForce);
     }
 
     private void GiveImpulseByHit(RaycastHit hit, Rigidbody rb, float ratioFireForce)

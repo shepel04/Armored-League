@@ -5479,6 +5479,7 @@ MonoBehaviour:
   SidewaysFriction: 0.6
   TurnForwardFriction: 0.6
   TurnSidewaysFriction: 0.6
+  _isControllerEnabled: 1
 --- !u!114 &7586420678636736063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5547,9 +5548,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7979820a2c94147d2bc882fd30385e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerTeam: 
   Controller: {fileID: 3479807747568559559}
   Camera: {fileID: 6293580035052533823}
   Nick: {fileID: 8041487976902374290}
+  HUD: {fileID: 7356717193477541067}
 --- !u!1 &2306087438905318720
 GameObject:
   m_ObjectHideFlags: 0
@@ -8640,7 +8643,7 @@ RectTransform:
   m_Father: {fileID: 2904631259329858873}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18774,7 +18777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4922388421218933289
 RectTransform:
   m_ObjectHideFlags: 0
