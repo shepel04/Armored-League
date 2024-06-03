@@ -44,6 +44,7 @@ namespace Ball
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             gameObject.SetActive(false);
+            // add disable ball projection
         }
     }
 }
