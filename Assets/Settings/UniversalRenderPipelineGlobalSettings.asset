@@ -18,7 +18,8 @@ MonoBehaviour:
   - Screen
   - Lamps
   - BallProjection
-  m_ValidRenderingLayers: 15
+  - Ball
+  m_ValidRenderingLayers: 31
   lightLayerName0: 
   lightLayerName1: 
   lightLayerName2: 
