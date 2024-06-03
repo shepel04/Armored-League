@@ -12,6 +12,8 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     [SerializeField] private Transform[] BlueTeamSpawns;
     [SerializeField] private Transform[] OrangeTeamSpawns;
     [SerializeField] private TMP_Text PlayerTeamText;
+    [SerializeField] private TMP_Text PlayerWaitingText;
+    
 
     private GameObject _player;
 
@@ -96,8 +98,14 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
+            PlayerWaitingText.text = string.Empty;
             photonView.RPC("StartCountdown", RpcTarget.All);
             Debug.Log("RPC sent");
+        }
+        else
+        {
+            PlayerWaitingText.text = "Waiting for players: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" +
+                                     PhotonNetwork.CurrentRoom.MaxPlayers;
         }
     }
 }

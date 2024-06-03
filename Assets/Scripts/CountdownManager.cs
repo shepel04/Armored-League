@@ -4,18 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class CountdownManager : MonoBehaviourPunCallbacks
 {
+    public TMP_Text CountdownText;
+    public TMP_Text TimerText;
     public Transform[] BlueSpawnPoints;
     public Transform[] OrangeSpawnPoints;
     
-    [SerializeField] private TMP_Text countdownText;
     private GameObject[] _allTanks;
     private List<TankController> _tankControllers;
     private int _countdownTime = 10;
     private int _smallCountdownTime = 3;
+    private float _matchCountdownTime = 300f;
+    private double _startTime;
+    private bool _timerRunning = false;
+    
 
     [PunRPC]
     void StartCountdown()
@@ -39,12 +45,12 @@ public class CountdownManager : MonoBehaviourPunCallbacks
     {
         while (_countdownTime > 0)
         {
-            countdownText.text = _countdownTime.ToString();
+            CountdownText.text = _countdownTime.ToString();
             Debug.Log(_countdownTime);
             yield return new WaitForSeconds(1);
             _countdownTime--;
         }
-        countdownText.text = String.Empty;
+        CountdownText.text = String.Empty;
         RespawnPlayers();
         StartCoroutine(SmallCountdown());
 
@@ -53,16 +59,17 @@ public class CountdownManager : MonoBehaviourPunCallbacks
     {
         while (_smallCountdownTime > 0)
         {
-            countdownText.text = _countdownTime.ToString();
+            CountdownText.text = _smallCountdownTime.ToString();
             Debug.Log(_smallCountdownTime);
             yield return new WaitForSeconds(1);
             _smallCountdownTime--;
         }
-        countdownText.text = "Go!";
+        CountdownText.text = "Go!";
         EnablePlayerControllers(true);
         yield return new WaitForSeconds(1);
+        StartMatchTimer();
         
-        countdownText.text = string.Empty;
+        CountdownText.text = string.Empty;
     }
 
     void RespawnPlayers()
@@ -98,7 +105,34 @@ public class CountdownManager : MonoBehaviourPunCallbacks
 
     void StartMatchTimer()
     {
-        // ---
+        _startTime = PhotonNetwork.Time;
+        _timerRunning = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_timerRunning)
+        {
+            UpdateTimer();
+        }
+    }
+
+    void UpdateTimer()
+    {
+        float elapsedTime = (float)(PhotonNetwork.Time - _startTime);
+        float remainingTime = _matchCountdownTime - elapsedTime;
+
+        if (remainingTime > 0)
+        {
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            TimerText.text = "00:00";
+            _timerRunning = false;
+        }
     }
     
 }

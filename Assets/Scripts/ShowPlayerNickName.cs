@@ -13,15 +13,23 @@ public class ShowPlayerNickName : MonoBehaviourPunCallbacks
     private GameObject _playerTank;
     private TMP_Text _nick;
     private Player _player;
+    private GameObject _localTank;
     void Start()
     {
         _tank = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (var tank in _tank)
         {
+            _nick.color = tank.GetComponent<PlayerSetup>().PlayerTeam == "blue" ? Color.blue : new Color(1f, 0.5f, 0f);
+        
             if (!tank.GetComponent<PhotonView>().IsMine)
             {
                 _playerTank = tank;
+                
+            }
+            else
+            {
+                _localTank = tank;
             }
         }
         
@@ -31,8 +39,22 @@ public class ShowPlayerNickName : MonoBehaviourPunCallbacks
         gameObject.AddComponent<LookAtConstraint>().AddSource(new ConstraintSource() {sourceTransform = _playerTank.transform, weight = 1f});
     }
 
-    private void Update()
+    void Update()
     {
-        //_nick.transform.rotation = player
+        if (_localTank == null)
+        {
+            return;
+        }
+
+        GameObject[] nickObjects = GameObject.FindGameObjectsWithTag("PlayerNick");
+
+        foreach (GameObject nickObject in nickObjects)
+        {
+            if (nickObject != null)
+            {
+                nickObject.transform.LookAt(_localTank.transform);
+                nickObject.transform.Rotate(0, 180, 0); 
+            }
+        }
     }
 }
