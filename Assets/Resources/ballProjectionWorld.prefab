@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 651940353853010423}
   m_Layer: 0
   m_Name: ballProjectionWorld
-  m_TagString: Untagged
+  m_TagString: BallProjection
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0777d029ed3dffa4692f417d4aba19ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: -876546973899608171, guid: 94386eab9827fac499a82d8e12cbf121, type: 3}
+  m_Material: {fileID: 2100000, guid: 9b132af0d1a7cfd4c95fc8c3e07992e0, type: 2}
   m_DrawDistance: 50
   m_FadeScale: 1
   m_StartAngleFade: 180
@@ -88,3 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d887baa17768840af9be922686e896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materials:
+  - {fileID: -876546973899608171, guid: 94386eab9827fac499a82d8e12cbf121, type: 3}
+  - {fileID: -876546973899608171, guid: cd45e33b87ff9e844bbbe6b1bdbb3eac, type: 3}

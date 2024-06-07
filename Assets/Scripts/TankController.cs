@@ -1,5 +1,6 @@
 using Photon.Pun;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class TankController : MonoBehaviourPunCallbacks
@@ -26,12 +27,26 @@ public class TankController : MonoBehaviourPunCallbacks
     private Rigidbody _rb;
     public bool _isControllerEnabled = true;
 
+    // jump section
+    private ConstantForce _cf;
+    private bool isJumpState = false;
+    private bool isReadyToJump = true;
+    private bool isAllowedGroundCheck = true;
+    [Min(1)]
+    public float jumpCooldown;
+    [Range(1, 5)]
+    public float rotationInJumpSensitivity;
+    public float jumpForce;
+    //private float lastInAirYRotation = 0.0f; // temp variable
+    //private float currentInAirYRotation = 0.0f; // temp variable
+
     void Start()
     {
         if (photonView.IsMine)
         {
             Debug.Log("Mine");
             _rb = GetComponent<Rigidbody>();
+            _cf = GetComponent<ConstantForce>();
             SetWheelFriction(ForwardFriction, SidewaysFriction);
         }
     }
@@ -43,15 +58,16 @@ public class TankController : MonoBehaviourPunCallbacks
             float moveInput = 0;
             float turnInput = 0;
             bool isHandBrake = false;
+            bool isJump = false;
             
             if (_isControllerEnabled)
             {
                 moveInput = Input.GetAxis("Vertical");
                 turnInput = Input.GetAxis("Horizontal");
                 isHandBrake = Input.GetKey(KeyCode.Space);
+                isJump = Input.GetKey(KeyCode.Mouse1);
             }
             
-
             // radiator animation influencer
             if (moveInput != 0 || turnInput != 0)
             {
@@ -144,7 +160,105 @@ public class TankController : MonoBehaviourPunCallbacks
             {
                 ReleaseBrakes();
             }
+
+            // jump logic
+            if (isJump && isReadyToJump && !isJumpState)
+            {
+                StartCoroutine(InitiateJump());
+            }
+            if (isJumpState && isAllowedGroundCheck && WhetherOnGround())
+            {
+                CompleteJump();
+            }
+            if (!WhetherOnGround())
+            {
+                StabilizeAirRotation();
+                if (turnInput != 0)
+                {
+                    ApplyTurnInAir(turnInput);
+                }
+            }
         }
+    }
+
+    private IEnumerator InitiateJump()
+    {
+        isAllowedGroundCheck = false;
+        isReadyToJump = false;
+        isJumpState = true;
+        
+        UseFakeGravity(true);
+        StabilizeRigidBodyStart();
+        ApplyJumpStartForce();
+
+        yield return new WaitForSeconds(0.5f); // delay to gain some height
+        isAllowedGroundCheck = true;
+
+        yield return new WaitForSeconds(jumpCooldown - 0.5f);
+        isReadyToJump = true;
+    }
+    private void CompleteJump()
+    {
+        isJumpState = false;
+        UseFakeGravity(false);
+    }
+    private bool WhetherOnGround()
+    {
+        bool result = false;
+        RaycastHit hit;
+        result = Physics.Raycast(transform.position, Vector3.down, out hit, 0.2f);
+        return
+            result &&
+            hit.transform.CompareTag("Stadium");
+    }
+    private void ApplyJumpStartForce()
+    {
+        _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+    private void UseFakeGravity(bool isEnabled)
+    {
+        _rb.useGravity = !isEnabled;
+        _cf.enabled = isEnabled;
+    }
+    private void StabilizeAirRotation()
+    {
+        transform.rotation =
+            Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.Euler(
+                    0.0f,
+                    transform.rotation.eulerAngles.y,
+                    0.0f),
+                0.2f);
+    }
+    private void StabilizeRigidBodyStart()
+    {
+        _rb.angularVelocity = Vector3.zero;
+
+        _rb.velocity = new Vector3(
+            _rb.velocity.normalized.x,
+            0.0f,
+            _rb.velocity.normalized.z) * 
+            _rb.velocity.magnitude;
+    }
+    private void ApplyTurnInAir(float turnInput)
+    {
+        //lastInAirYRotation = transform.rotation.eulerAngles.y;
+
+        transform.rotation *=
+            Quaternion.Euler(
+                0.0f,
+                turnInput * rotationInJumpSensitivity,
+                0.0f);
+
+        //currentInAirYRotation = transform.rotation.eulerAngles.y;
+
+        //_rb.velocity =
+        //    Quaternion.Euler(
+        //        0.0f,
+        //        currentInAirYRotation - lastInAirYRotation,
+        //        0.0f) *
+        //    _rb.velocity;
     }
 
     public void StopTank()

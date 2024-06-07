@@ -1,17 +1,13 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ball
 {
     public class GoalTrigger : MonoBehaviour
     {
-        public event Action<Vector3, Vector3> GoalIntoTeamOne; // ball position, goal normal
-        public event Action<Vector3, Vector3> GoalIntoTeamTwo; // ball position, goal normal
+        public event Action<int, Vector3, Vector3> GoalIntoTeam; // team index, ball position, goal normal
 
-        public event Action ScoreTeamOne;
-        public event Action ScoreTeamTwo;
+        public event Action<int> ScoreTeam; // team index
 
         void Start()
         {
@@ -22,19 +18,21 @@ namespace Ball
         {
             if (other.transform.CompareTag("Team1Goal"))
             {
-                GoalIntoTeamOne?.Invoke(
+                GoalIntoTeam?.Invoke(
+                    0,
                     transform.position,
                     other.transform.forward);
-                ScoreTeamTwo?.Invoke();
+                ScoreTeam?.Invoke(1);
 
                 DisableBall();
             }
             else if (other.transform.CompareTag("Team2Goal"))
             {
-                GoalIntoTeamTwo?.Invoke(
+                GoalIntoTeam?.Invoke(
+                    1,
                     transform.position,
                     other.transform.forward);
-                ScoreTeamOne?.Invoke();
+                ScoreTeam?.Invoke(0);
 
                 DisableBall();
             }
@@ -44,7 +42,8 @@ namespace Ball
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             gameObject.SetActive(false);
-            // add disable ball projection
+
+            GameObject.FindWithTag("BallProjection").SetActive(false);
         }
     }
 }

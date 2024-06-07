@@ -11,6 +11,10 @@ TagManager:
   - Ball
   - Team2Goal
   - Team1Goal
+  - PlayerNick
+  - Stadium
+  - FxTemporaire
+  - BallProjection
   layers:
   - Default
   - TransparentFX

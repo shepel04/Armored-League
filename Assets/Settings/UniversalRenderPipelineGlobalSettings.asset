@@ -19,7 +19,8 @@ MonoBehaviour:
   - Lamps
   - BallProjection
   - Ball
-  m_ValidRenderingLayers: 31
+  - Tank
+  m_ValidRenderingLayers: 63
   lightLayerName0: 
   lightLayerName1: 
   lightLayerName2: 

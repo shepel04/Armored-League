@@ -1055,7 +1055,7 @@ GameObject:
   - component: {fileID: 2078095881444484775}
   m_Layer: 0
   m_Name: collision_mesh2
-  m_TagString: Untagged
+  m_TagString: Stadium
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1978,7 +1978,7 @@ MonoBehaviour:
   m_EndAngleFade: 180
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 16
+  m_DecalLayerMask: 48
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0.79}
   m_Size: {x: 4.01, y: 0.03, z: 1.58}
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_EndAngleFade: 180
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: 0, y: 0}
-  m_DecalLayerMask: 16
+  m_DecalLayerMask: 48
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 0.79}
   m_Size: {x: 4.01, y: 0.03, z: 1.58}
