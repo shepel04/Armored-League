@@ -1,68 +1,134 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using System.Collections.Generic;
+using TMPro;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class MatchManager : MonoBehaviourPunCallbacks
 {
-    private const string TeamProperty = "team";
-    private List<Player> blueTeam = new List<Player>();
-    private List<Player> orangeTeam = new List<Player>();
+    public TMP_Text CountdownText;
+    public TMP_Text TimerText;
+    public RespawnManager RespawnManager;
+    
+    private GameObject[] _allTanks;
+    private int _countdownTime = 10;
+    private int _smallCountdownTime = 3;
+    private float _matchCountdownTime = 300f;
+    private double _startTime;
+    private bool _timerRunning = false;
+    private GameObject _ball;
 
-    public override void OnJoinedRoom()
+    [PunRPC]
+    void StartCountdown()
     {
-        AssignTeams();
-    }
-
-    private void AssignTeams()
-    {
-        Player[] players = PhotonNetwork.PlayerList;
+        _ball = GameObject.FindWithTag("Ball");
+        Debug.Log("Start Countdown");
+        _allTanks = GameObject.FindGameObjectsWithTag("Player");
+        RespawnManager.Initialize(_ball, _allTanks);
         
-        Debug.Log(players[0].NickName);
-
-        blueTeam.Clear();
-        orangeTeam.Clear();
-
-        foreach (Player player in players)
-        {
-            if (blueTeam.Count <= orangeTeam.Count)
-            {
-                blueTeam.Add(player);
-                player.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { TeamProperty, "blue" } });
-            }
-            else
-            {
-                orangeTeam.Add(player);
-                player.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { TeamProperty, "orange" } });
-            }
-        }
-
-        DebugTeams();
+        StartCoroutine(Countdown());
     }
 
-    private void DebugTeams()
+    private void Start()
     {
-        Debug.Log("Blue Team:");
-        foreach (Player player in blueTeam)
-        {
-            Debug.Log(player.NickName);
-        }
+        _smallCountdownTime = 3;
+    }
 
-        Debug.Log("Orange Team:");
-        foreach (Player player in orangeTeam)
+    private IEnumerator Countdown()
+    {
+        while (_countdownTime > 0)
         {
-            Debug.Log(player.NickName);
+            CountdownText.text = _countdownTime.ToString();
+            Debug.Log(_countdownTime);
+            yield return new WaitForSeconds(1);
+            _countdownTime--;
+        }
+        CountdownText.text = String.Empty;
+        RespawnManager.RespawnPlayersAndBall();
+        StartCoroutine(SmallCountdown());
+        GameObject.FindWithTag("PhotonManager").GetComponent<PhotonManagerStadium>().IsMatchStarted = true;
+    }
+
+    private IEnumerator SmallCountdown()
+    {
+        //int _smallCountdownTimeTmp = _smallCountdownTime;
+        while (_smallCountdownTime > 0)
+        {
+            CountdownText.text = _smallCountdownTime.ToString();
+            yield return new WaitForSeconds(1);
+            _smallCountdownTime--;
+        }
+        CountdownText.text = "Go!";
+        RespawnManager.EnablePlayerControllers(true);
+        
+        
+        if (!GameObject.FindWithTag("PhotonManager").GetComponent<PhotonManagerStadium>().IsMatchStarted)
+        {
+            StartMatchTimer();
+        }
+        
+        CountdownText.text = string.Empty;
+    }
+
+    void StartMatchTimer()
+    {
+        _startTime = PhotonNetwork.Time;
+        _timerRunning = true;
+    }
+
+    [PunRPC]
+    void PauseMatchTimer()
+    {
+        _timerRunning = false;
+    }
+    
+    [PunRPC]
+    void ResumeMatchTimer()
+    {
+        _timerRunning = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (_timerRunning)
+        {
+            UpdateTimer();
         }
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    void UpdateTimer()
     {
-        AssignTeams();
+        float elapsedTime = (float)(PhotonNetwork.Time - _startTime);
+        float remainingTime = _matchCountdownTime - elapsedTime;
+
+        if (remainingTime > 0)
+        {
+            int minutes = Mathf.FloorToInt(remainingTime / 60);
+            int seconds = Mathf.FloorToInt(remainingTime % 60);
+            TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+        else
+        {
+            TimerText.text = "00:00";
+            _timerRunning = false;
+            photonView.RPC("MatchOver", RpcTarget.All);
+        }
     }
 
-    // Викликаємо, коли гравець виходить з кімнати
-    public override void OnPlayerLeftRoom(Player otherPlayer)
+    [PunRPC]
+    public void OnGoalScored()
     {
-        AssignTeams();
+        StartCoroutine(RespawnAfterGoal());
+    }
+
+    private IEnumerator RespawnAfterGoal()
+    {
+        yield return new WaitForSeconds(5);
+        RespawnManager.RespawnPlayersAndBall();
+        StartCoroutine(SmallCountdown());
+        //photonView.RPC("ResumeMatchTimer", RpcTarget.All);
     }
 }

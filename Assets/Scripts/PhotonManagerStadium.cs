@@ -13,6 +13,7 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     [SerializeField] private Transform[] OrangeTeamSpawns;
     [SerializeField] private TMP_Text PlayerTeamText;
     [SerializeField] private TMP_Text PlayerWaitingText;
+    public bool IsMatchStarted;
     
 
     private GameObject _player;
@@ -27,6 +28,14 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
             AssignTeam();
             SpawnPlayer();
             CheckRoomStatus();
+        }
+    }
+
+    private void Update()
+    {
+        if (!IsMatchStarted)
+        {
+            photonView.RPC("StartPlayerAmountChecking", RpcTarget.All);
         }
     }
 
@@ -99,13 +108,35 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             PlayerWaitingText.text = string.Empty;
+            
             photonView.RPC("StartCountdown", RpcTarget.All);
             Debug.Log("RPC sent");
         }
         else
         {
+            
+        }
+    }
+    
+    [PunRPC]
+    void StartPlayerAmountChecking()
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount != PhotonNetwork.CurrentRoom.MaxPlayers && !IsMatchStarted)
+        {
             PlayerWaitingText.text = "Waiting for players: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" +
                                      PhotonNetwork.CurrentRoom.MaxPlayers;
         }
+        else
+        {
+            PlayerWaitingText.text = string.Empty;
+            //IsMatchStarted = true;
+        }
+        
+    }
+
+    [PunRPC]
+    public void MatchOver()
+    {
+        IsMatchStarted = false;
     }
 }

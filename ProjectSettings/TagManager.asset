@@ -11,6 +11,11 @@ TagManager:
   - Ball
   - Team2Goal
   - Team1Goal
+  - PlayerNick
+  - PhotonManager
+  - BallProjection
+  - TeamBlueGoal
+  - TeamOrangeGoal
   layers:
   - Default
   - TransparentFX
