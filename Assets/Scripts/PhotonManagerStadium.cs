@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ball;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -13,10 +14,14 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     [SerializeField] private Transform[] OrangeTeamSpawns;
     [SerializeField] private TMP_Text PlayerTeamText;
     [SerializeField] private TMP_Text PlayerWaitingText;
+    [SerializeField] private GameObject WinCanvas;
+    [SerializeField] private GameObject LoseCanvas;
+    [SerializeField] private GameObject DrawCanvas;
     public bool IsMatchStarted;
     
 
     private GameObject _player;
+    private GameObject[] _afterMatchCanvases;
 
     private const string TeamProperty = "team";
     private string _playerTeam;
@@ -28,6 +33,7 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
             AssignTeam();
             SpawnPlayer();
             CheckRoomStatus();
+            
         }
     }
 
@@ -129,7 +135,7 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
         else
         {
             PlayerWaitingText.text = string.Empty;
-            //IsMatchStarted = true;
+            IsMatchStarted = true;
         }
         
     }
@@ -138,5 +144,45 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     public void MatchOver()
     {
         IsMatchStarted = false;
+        
+        _afterMatchCanvases = GameObject.FindGameObjectsWithTag("AfterMatchCanvas");
+        
+        Debug.Log("MatchIsOver");
+
+        string matchResult;
+
+        if (ScoreManager.Instance.BlueTeamScore > ScoreManager.Instance.OrangeTeamScore)
+        {
+            matchResult = "blue";
+        }
+        else if (ScoreManager.Instance.BlueTeamScore < ScoreManager.Instance.OrangeTeamScore)
+        {
+            matchResult = "orange";
+        }
+        else
+        {
+            matchResult = "draw";
+        }
+
+        Player localPlayer = PhotonNetwork.LocalPlayer;
+
+        if ((string)localPlayer.CustomProperties["team"] == matchResult)
+        {
+            // win canvas
+            WinCanvas.SetActive(true);
+            Debug.Log("Win");
+        }
+        else if (matchResult != "draw") 
+        {
+            // lose canvas
+            LoseCanvas.SetActive(true);
+            Debug.Log("Lose");
+        }
+        else
+        {
+            // draw canvas
+            DrawCanvas.SetActive(true);
+            Debug.Log("Draw");
+        }
     }
 }

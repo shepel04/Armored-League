@@ -16,6 +16,8 @@ TagManager:
   - BallProjection
   - TeamBlueGoal
   - TeamOrangeGoal
+  - CanvasesObject
+  - AfterMatchCanvas
   layers:
   - Default
   - TransparentFX

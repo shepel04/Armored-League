@@ -14,6 +14,21 @@ namespace Ball
         private int teamOneScore;
         private int teamTwoScore;
 
+        public int BlueTeamScore
+        {
+            get
+            {
+                return teamTwoScore;
+            }
+        }
+
+        public int OrangeTeamScore {
+            get
+            {
+                return teamOneScore;
+            }
+        }
+
         private void Awake()
         {
             if (Instance == null)
@@ -31,14 +46,14 @@ namespace Ball
             UpdateScoreUI();
         }
 
-        [PunRPC]
+        //[PunRPC]
         public void TeamOneScored()
         {
             teamOneScore++;
             UpdateScoreUI();
         }
 
-        [PunRPC]
+        //[PunRPC]
         public void TeamTwoScored()
         {
             teamTwoScore++;
@@ -47,8 +62,8 @@ namespace Ball
 
         private void UpdateScoreUI()
         {
-            teamOneScoreText.text = teamOneScore / 2 + " : " + teamTwoScore / 2;
-            teamTwoScoreText.text = teamOneScore / 2 + " : " + teamTwoScore / 2;
+            teamOneScoreText.text = teamOneScore + " : " + teamTwoScore;
+            teamTwoScoreText.text = teamOneScore + " : " + teamTwoScore;
         }
     }
 }

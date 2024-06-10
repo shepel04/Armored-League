@@ -16,10 +16,11 @@ public class MatchManager : MonoBehaviourPunCallbacks
     private GameObject[] _allTanks;
     private int _countdownTime = 10;
     private int _smallCountdownTime = 3;
-    private float _matchCountdownTime = 300f;
+    private float _matchCountdownTime = 20f; // 300f
     private double _startTime;
     private bool _timerRunning = false;
     private GameObject _ball;
+    private PhotonManagerStadium _photonManagerObject;
 
     [PunRPC]
     void StartCountdown()
@@ -34,7 +35,14 @@ public class MatchManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        _smallCountdownTime = 3;
+        //_smallCountdownTime = 3;
+        _photonManagerObject = GameObject.FindWithTag("PhotonManager").GetComponent<PhotonManagerStadium>();
+    }
+
+    [PunRPC]
+    public void StartSmallMatchCountdown()
+    {
+        StartCoroutine(SmallCountdown());
     }
 
     private IEnumerator Countdown()
@@ -48,28 +56,40 @@ public class MatchManager : MonoBehaviourPunCallbacks
         }
         CountdownText.text = String.Empty;
         RespawnManager.RespawnPlayersAndBall();
-        StartCoroutine(SmallCountdown());
-        GameObject.FindWithTag("PhotonManager").GetComponent<PhotonManagerStadium>().IsMatchStarted = true;
+        StartCoroutine(FirstSmallCountdown());
+        _photonManagerObject.IsMatchStarted = true;
     }
 
-    private IEnumerator SmallCountdown()
+    private IEnumerator FirstSmallCountdown()
     {
-        //int _smallCountdownTimeTmp = _smallCountdownTime;
-        while (_smallCountdownTime > 0)
+        int _smallCountdownTimeTmp = _smallCountdownTime;
+        while (_smallCountdownTimeTmp > 0)
         {
-            CountdownText.text = _smallCountdownTime.ToString();
+            CountdownText.text = _smallCountdownTimeTmp.ToString();
             yield return new WaitForSeconds(1);
-            _smallCountdownTime--;
+            _smallCountdownTimeTmp--;
         }
         CountdownText.text = "Go!";
         RespawnManager.EnablePlayerControllers(true);
+        CountdownText.text = string.Empty;
         
         
-        if (!GameObject.FindWithTag("PhotonManager").GetComponent<PhotonManagerStadium>().IsMatchStarted)
+        StartMatchTimer();
+        
+        
+        
+    }
+    private IEnumerator SmallCountdown()
+    {
+        int _smallCountdownTimeTmp = _smallCountdownTime;
+        while (_smallCountdownTimeTmp > 0)
         {
-            StartMatchTimer();
+            CountdownText.text = _smallCountdownTimeTmp.ToString();
+            yield return new WaitForSeconds(1);
+            _smallCountdownTimeTmp--;
         }
-        
+        CountdownText.text = "Go!";
+        RespawnManager.EnablePlayerControllers(true);
         CountdownText.text = string.Empty;
     }
 
@@ -118,7 +138,7 @@ public class MatchManager : MonoBehaviourPunCallbacks
         }
     }
 
-    [PunRPC]
+    //[PunRPC]
     public void OnGoalScored()
     {
         StartCoroutine(RespawnAfterGoal());
@@ -128,6 +148,7 @@ public class MatchManager : MonoBehaviourPunCallbacks
     {
         yield return new WaitForSeconds(5);
         RespawnManager.RespawnPlayersAndBall();
+        RespawnManager.EnablePlayerControllers(false);
         StartCoroutine(SmallCountdown());
         //photonView.RPC("ResumeMatchTimer", RpcTarget.All);
     }

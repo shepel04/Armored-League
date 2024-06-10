@@ -21,6 +21,7 @@ namespace Ball
         private Player _lastBlueBallOwner;
         private Player _lastOrangeBallOwner;
         private PhotonView _ballPhotonView;
+        public MatchManager _matchManagerInstance;
 
         void Start()
         {
@@ -28,6 +29,7 @@ namespace Ball
             _ballProjection = GameObject.FindWithTag("BallProjection");
             _mainPhotonView = GameObject.FindWithTag("PhotonManager").GetComponent<PhotonView>();
             _ballPhotonView = GameObject.FindWithTag("Ball").GetComponent<PhotonView>();
+            _matchManagerInstance = GameObject.FindWithTag("PhotonManager").GetComponent<MatchManager>();
         }
 
         private void FixedUpdate()
@@ -64,8 +66,10 @@ namespace Ball
                     PhotonView.Get(this).RPC("ShowScoredPlayerForThreeSeconds", RpcTarget.All);
                     
                     //_mainPhotonView.RPC("PauseMatchTimer", RpcTarget.All);
-                    PhotonView.Get(this).RPC("TeamScored", RpcTarget.All, true);
-                    _mainPhotonView.RPC("OnGoalScored", RpcTarget.All);
+                    TeamScored(true);
+                    //_mainPhotonView.RPC("OnGoalScored", RpcTarget.All);
+                    
+                    _matchManagerInstance.OnGoalScored();
                 
                     DisableBall();
                 }
@@ -79,10 +83,21 @@ namespace Ball
                     
                     
                     //_mainPhotonView.RPC("PauseMatchTimer", RpcTarget.All);
-                    PhotonView.Get(this).RPC("TeamScored", RpcTarget.All, false);
-                    _mainPhotonView.RPC("OnGoalScored", RpcTarget.All);
+                    TeamScored(false);
+                    
+                    _matchManagerInstance.OnGoalScored();
+
+                    //_mainPhotonView.RPC("OnGoalScored", RpcTarget.All);
                     DisableBall();
                 }
+                
+                /*if (PhotonNetwork.IsMasterClient)
+                {
+                    _matchManagerInstance.RespawnManager.RespawnPlayersAndBall(); 
+                    _matchManagerInstance.RespawnManager.EnablePlayerControllers(false);
+                    _mainPhotonView.RPC("StartSmallMatchCountdown", RpcTarget.All);
+                    
+                }*/
             }
         }
         
@@ -103,7 +118,7 @@ namespace Ball
             ScoredPlayerText.gameObject.SetActive(false);
         }
 
-        [PunRPC]
+        //[PunRPC]
         private void TeamScored(bool isTeamOne)
         {
             if (isTeamOne)
