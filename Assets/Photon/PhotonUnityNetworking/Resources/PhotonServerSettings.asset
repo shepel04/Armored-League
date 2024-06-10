@@ -43,6 +43,22 @@ MonoBehaviour:
   - SetTeam
   - ApplyForceToBall
   - StartCountdown
+  - StartPlayerAmountChecking
+  - MatchOver
+  - AddScoreTeamOne
+  - AddScoreTeamTwo
+  - TeamOneScored
+  - TeamTwoScored
+  - TeamOneScoredCall
+  - TeamTwoScoredCall
+  - TeamScored
+  - OnGoalScored
+  - PauseMatchTimer
+  - ResumeMatchTimer
+  - WriteLastBallOwner
+  - ShowTextForThreeSeconds
+  - ShowScoredPlayerForThreeSeconds
+  - StartSmallMatchCountdown
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

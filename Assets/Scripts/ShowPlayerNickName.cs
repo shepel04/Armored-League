@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,52 +8,54 @@ using UnityEngine.Animations;
 
 public class ShowPlayerNickName : MonoBehaviourPunCallbacks
 {
-    private GameObject[] _tank;
-    private GameObject _playerTank;
     private TMP_Text _nick;
-    private Player _player;
     private GameObject _localTank;
+
     void Start()
     {
-        _tank = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach (var tank in _tank)
-        {
-            _nick.color = tank.GetComponent<PlayerSetup>().PlayerTeam == "blue" ? Color.blue : new Color(1f, 0.5f, 0f);
-        
-            if (!tank.GetComponent<PhotonView>().IsMine)
-            {
-                _playerTank = tank;
-                
-            }
-            else
-            {
-                _localTank = tank;
-            }
-        }
-        
         _nick = GetComponent<TMP_Text>();
         _nick.text = photonView.Owner.NickName;
 
-        gameObject.AddComponent<LookAtConstraint>().AddSource(new ConstraintSource() {sourceTransform = _playerTank.transform, weight = 1f});
+        UpdateNickColor();
+
+        if (photonView.IsMine)
+        {
+            _localTank = gameObject;
+            StartCoroutine(UpdateNicknamesLookAt());
+        }
     }
 
-    void Update()
+    private void UpdateNickColor()
     {
-        if (_localTank == null)
+        var player = GetComponentInParent<PhotonView>().Owner;
+        
+        _nick.color = (string)player.CustomProperties["team"] == "blue" ? Color.blue : new Color(1f, 0.5f, 0f);
+        
+        
+        /*var playerSetup = GetComponentInParent<PlayerSetup>();
+        if (playerSetup != null)
         {
-            return;
-        }
+            _nick.color = playerSetup.PlayerTeam == "blue" ? Color.blue : new Color(1f, 0.5f, 0f);
+        }*/
+    }
 
-        GameObject[] nickObjects = GameObject.FindGameObjectsWithTag("PlayerNick");
-
-        foreach (GameObject nickObject in nickObjects)
+    private IEnumerator UpdateNicknamesLookAt()
+    {
+        while (true)
         {
-            if (nickObject != null)
+            //need look at local player camera
+            GameObject[] nickObjects = GameObject.FindGameObjectsWithTag("PlayerNick");
+
+            foreach (GameObject nickObject in nickObjects)
             {
-                nickObject.transform.LookAt(_localTank.transform);
-                nickObject.transform.Rotate(0, 180, 0); 
+                if (nickObject != null && nickObject != _nick.gameObject)
+                {
+                    nickObject.transform.LookAt(_localTank.transform);
+                    nickObject.transform.Rotate(0, 180, 0);
+                }
             }
+
+            yield return new WaitForSeconds(0.1f); // Update every 0.1 seconds
         }
     }
 }

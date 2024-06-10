@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 9043833879567339033}
   m_Layer: 0
   m_Name: goalTrigger2
-  m_TagString: Team2Goal
+  m_TagString: TeamOrangeGoal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2841,7 +2841,7 @@ GameObject:
   - component: {fileID: 1550377824754494572}
   m_Layer: 0
   m_Name: goalTrigger1
-  m_TagString: Team1Goal
+  m_TagString: TeamBlueGoal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

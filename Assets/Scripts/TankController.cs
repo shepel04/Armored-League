@@ -274,8 +274,6 @@ public class TankController : MonoBehaviourPunCallbacks
             wheel.motorTorque = 0f;
             wheel.brakeTorque = float.MaxValue;
             wheel.rotationSpeed = 0f;
-            Debug.Log(wheel.rpm);
-
         }
     }
 

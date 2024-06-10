@@ -12,9 +12,12 @@ TagManager:
   - Team2Goal
   - Team1Goal
   - PlayerNick
-  - Stadium
-  - FxTemporaire
+  - PhotonManager
   - BallProjection
+  - TeamBlueGoal
+  - TeamOrangeGoal
+  - CanvasesObject
+  - AfterMatchCanvas
   layers:
   - Default
   - TransparentFX

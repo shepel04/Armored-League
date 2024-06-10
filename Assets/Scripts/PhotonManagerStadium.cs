@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ball;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -13,9 +14,14 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     [SerializeField] private Transform[] OrangeTeamSpawns;
     [SerializeField] private TMP_Text PlayerTeamText;
     [SerializeField] private TMP_Text PlayerWaitingText;
+    [SerializeField] private GameObject WinCanvas;
+    [SerializeField] private GameObject LoseCanvas;
+    [SerializeField] private GameObject DrawCanvas;
+    public bool IsMatchStarted;
     
 
     private GameObject _player;
+    private GameObject[] _afterMatchCanvases;
 
     private const string TeamProperty = "team";
     private string _playerTeam;
@@ -27,6 +33,15 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
             AssignTeam();
             SpawnPlayer();
             CheckRoomStatus();
+            
+        }
+    }
+
+    private void Update()
+    {
+        if (!IsMatchStarted)
+        {
+            photonView.RPC("StartPlayerAmountChecking", RpcTarget.All);
         }
     }
 
@@ -99,13 +114,75 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             PlayerWaitingText.text = string.Empty;
+            
             photonView.RPC("StartCountdown", RpcTarget.All);
             Debug.Log("RPC sent");
         }
         else
         {
+            
+        }
+    }
+    
+    [PunRPC]
+    void StartPlayerAmountChecking()
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount != PhotonNetwork.CurrentRoom.MaxPlayers && !IsMatchStarted)
+        {
             PlayerWaitingText.text = "Waiting for players: " + PhotonNetwork.CurrentRoom.PlayerCount + "/" +
                                      PhotonNetwork.CurrentRoom.MaxPlayers;
+        }
+        else
+        {
+            PlayerWaitingText.text = string.Empty;
+            IsMatchStarted = true;
+        }
+        
+    }
+
+    [PunRPC]
+    public void MatchOver()
+    {
+        IsMatchStarted = false;
+        
+        _afterMatchCanvases = GameObject.FindGameObjectsWithTag("AfterMatchCanvas");
+        
+        Debug.Log("MatchIsOver");
+
+        string matchResult;
+
+        if (ScoreManager.Instance.BlueTeamScore > ScoreManager.Instance.OrangeTeamScore)
+        {
+            matchResult = "blue";
+        }
+        else if (ScoreManager.Instance.BlueTeamScore < ScoreManager.Instance.OrangeTeamScore)
+        {
+            matchResult = "orange";
+        }
+        else
+        {
+            matchResult = "draw";
+        }
+
+        Player localPlayer = PhotonNetwork.LocalPlayer;
+
+        if ((string)localPlayer.CustomProperties["team"] == matchResult)
+        {
+            // win canvas
+            WinCanvas.SetActive(true);
+            Debug.Log("Win");
+        }
+        else if (matchResult != "draw") 
+        {
+            // lose canvas
+            LoseCanvas.SetActive(true);
+            Debug.Log("Lose");
+        }
+        else
+        {
+            // draw canvas
+            DrawCanvas.SetActive(true);
+            Debug.Log("Draw");
         }
     }
 }
