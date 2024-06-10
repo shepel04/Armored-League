@@ -18,6 +18,8 @@ TagManager:
   - TeamOrangeGoal
   - CanvasesObject
   - AfterMatchCanvas
+  - Stadium
+  - TankShootVFX
   layers:
   - Default
   - TransparentFX

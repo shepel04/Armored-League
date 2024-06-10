@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 1159669718553410109}
   m_Layer: 16
   m_Name: EndPoint
-  m_TagString: Untagged
+  m_TagString: TankShootVFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5500,7 +5500,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2290888522279932896}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8182991c5ac54c9d92915beb2fdb980, type: 3}
   m_Name: 
@@ -12949,7 +12949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPrefab: {fileID: 5275112566429998387, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
-  targetTransform: {fileID: 1159669718553410109}
 --- !u!114 &4859412513528737652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15452,7 +15451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &704409241230156622
 Transform:
   m_ObjectHideFlags: 0

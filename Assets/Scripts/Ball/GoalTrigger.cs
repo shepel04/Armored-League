@@ -12,6 +12,9 @@ namespace Ball
     {
         public event Action<Vector3, Vector3> GoalIntoTeamOne;  
         public event Action<Vector3, Vector3> GoalIntoTeamTwo;
+        public event Action<int, Vector3, Vector3> GoalIntoTeam; // team index, ball position, goal normal
+        public event Action<int> ScoreTeam; // team index
+
 
         public TMP_Text ScoredPlayerText;
 
@@ -70,6 +73,12 @@ namespace Ball
                     //_mainPhotonView.RPC("OnGoalScored", RpcTarget.All);
                     
                     _matchManagerInstance.OnGoalScored();
+                    
+                    GoalIntoTeam?.Invoke(
+                        0,
+                        transform.position,
+                        other.transform.forward);
+                    ScoreTeam?.Invoke(1);
                 
                     DisableBall();
                 }
@@ -86,6 +95,12 @@ namespace Ball
                     TeamScored(false);
                     
                     _matchManagerInstance.OnGoalScored();
+                    
+                    GoalIntoTeam?.Invoke(
+                        1,
+                        transform.position,
+                        other.transform.forward);
+                    ScoreTeam?.Invoke(0);
 
                     //_mainPhotonView.RPC("OnGoalScored", RpcTarget.All);
                     DisableBall();

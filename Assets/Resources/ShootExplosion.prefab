@@ -4732,6 +4732,7 @@ GameObject:
   - component: {fileID: 3449805708334814985}
   - component: {fileID: 3966034178887470936}
   - component: {fileID: 3570202886176317628}
+  - component: {fileID: 1984807362588852020}
   m_Layer: 0
   m_Name: ShootExplosion
   m_TagString: Untagged
@@ -4747,8 +4748,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5275112566429998387}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.728742, y: 0, z: -0.17369102, w: 0.6623945}
-  m_LocalPosition: {x: -6.8220477, y: 0.13738641, z: 11.221624}
+  m_LocalRotation: {x: -0.69297594, y: 0, z: -0.18344851, w: 0.69723094}
+  m_LocalPosition: {x: 4.9147286, y: 0.15675826, z: -2.419743}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9615,6 +9616,28 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &1984807362588852020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275112566429998387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8553703910947136673
 GameObject:
   m_ObjectHideFlags: 0
