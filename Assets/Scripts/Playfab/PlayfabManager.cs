@@ -26,6 +26,21 @@ public class PlayfabManager : MonoBehaviour
 
 
     private bool _isPasswordVisible;
+    
+    public static PlayfabManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void RegisterPlayer()
     {
         if (string.IsNullOrEmpty(PlayerNickReg.text) || string.IsNullOrEmpty(PlayerPasswordReg.text))
@@ -121,5 +136,44 @@ public class PlayfabManager : MonoBehaviour
             field.contentType = TMP_InputField.ContentType.Password;
             _isPasswordVisible = false;
         }
+    }
+    
+    public void UpdatePlayerScore(int score)
+    {
+        var request = new UpdateUserDataRequest
+        {
+            Data = new System.Collections.Generic.Dictionary<string, string>
+            {
+                {"PlayerScore", score.ToString()}
+            }
+        };
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
+    }
+
+    private void OnDataSend(UpdateUserDataResult result)
+    {
+        Debug.Log("Successfully updated player score.");
+    }
+
+    private void OnError(PlayFabError error)
+    {
+        Debug.LogError("Error while updating player score: " + error.GenerateErrorReport());
+    }
+    
+    public void GetPlayerScore(System.Action<int> onSuccess)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
+        {
+            if (result.Data != null && result.Data.ContainsKey("PlayerScore"))
+            {
+                int currentScore = int.Parse(result.Data["PlayerScore"].Value);
+                Debug.Log("Current player score: " + currentScore);
+                onSuccess(currentScore);
+            }
+            else
+            {
+                onSuccess(0);
+            }
+        }, OnError);
     }
 }

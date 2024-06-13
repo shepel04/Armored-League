@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.UI;
 
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
@@ -11,13 +12,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_InputField _accountNameInputField;
     [SerializeField] private TMP_InputField _accountPasswordInputField;
     [SerializeField] private TMP_InputField _roomNameInputField;
+    [SerializeField] private TMP_InputField _roomPasswordInputField;
     [SerializeField] private TMP_Dropdown _playersAmountDropdown;
     [SerializeField] private ListItem _roomRowPrefab;
     [SerializeField] private Transform _roomsList;
+    [SerializeField] private Toggle _passwordToggle;
 
     private List<RoomInfo> _allRoomsInfo = new List<RoomInfo>();
 
     private const string TeamProperty = "team";
+    private string _roomPassword;
 
     private void Start()
     {
@@ -54,6 +58,16 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         RoomOptions roomOptions = new RoomOptions();
         int selIndexDropdown = _playersAmountDropdown.value;
         roomOptions.MaxPlayers = Int32.Parse(_playersAmountDropdown.options[selIndexDropdown].text);
+        
+        if (_passwordToggle.isOn)
+        {
+            _roomPassword = _roomPasswordInputField.text;
+            if (!string.IsNullOrEmpty(_roomPassword))
+            {
+                roomOptions.CustomRoomProperties = new ExitGames.Client.Photon.Hashtable() { { "password", _roomPassword } };
+                roomOptions.CustomRoomPropertiesForLobby = new string[] { "password" };
+            }
+        }
 
         if (!string.IsNullOrEmpty(_roomNameInputField.text))
         {

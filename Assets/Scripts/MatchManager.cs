@@ -16,7 +16,7 @@ public class MatchManager : MonoBehaviourPunCallbacks
     private GameObject[] _allTanks;
     private int _countdownTime = 10;
     private int _smallCountdownTime = 3;
-    private float _matchCountdownTime = 200f; //300f
+    private float _matchCountdownTime = 20f; //300f
     private double _startTime;
     private bool _timerRunning = false;
     private GameObject _ball;

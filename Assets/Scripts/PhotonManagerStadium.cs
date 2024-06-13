@@ -5,6 +5,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using PlayFab;
+using PlayFab.ClientModels;
 using UnityEngine.Serialization;
 
 public class PhotonManagerStadium : MonoBehaviourPunCallbacks
@@ -17,6 +19,7 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject WinCanvas;
     [SerializeField] private GameObject LoseCanvas;
     [SerializeField] private GameObject DrawCanvas;
+    [SerializeField] private GameObject MatchHUD;
     public bool IsMatchStarted;
     
 
@@ -144,6 +147,9 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     public void MatchOver()
     {
         IsMatchStarted = false;
+
+        Time.timeScale = 0; 
+        MatchHUD.SetActive(false);
         
         _afterMatchCanvases = GameObject.FindGameObjectsWithTag("AfterMatchCanvas");
         
@@ -171,18 +177,40 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
             // win canvas
             WinCanvas.SetActive(true);
             Debug.Log("Win");
+            UpdatePlayerScore(3);
         }
         else if (matchResult != "draw") 
         {
             // lose canvas
             LoseCanvas.SetActive(true);
             Debug.Log("Lose");
+            UpdatePlayerScore(-3);
         }
         else
         {
             // draw canvas
             DrawCanvas.SetActive(true);
             Debug.Log("Draw");
+            UpdatePlayerScore(1);
         }
+    }
+    
+    private void UpdatePlayerScore(int scoreChange)
+    {
+        int currentScore = 0;
+
+        PlayfabManager.Instance.GetPlayerScore((currentScore) => 
+        {
+            int newScore = currentScore + scoreChange;
+            
+            if (newScore < 0)
+            {
+                newScore = 0;
+            }
+            
+            Debug.Log(newScore);
+            
+            PlayfabManager.Instance.UpdatePlayerScore(newScore);
+        });
     }
 }
