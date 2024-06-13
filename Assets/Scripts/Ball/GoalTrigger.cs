@@ -59,8 +59,6 @@ namespace Ball
 
         private void OnTriggerEnter(Collider other)
         {
-            ScoreTeam?.Invoke(1); // debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug debug
-
             if (_photonManagerObject.IsMatchStarted)
             {
                 if (other.transform.CompareTag("TeamBlueGoal"))
