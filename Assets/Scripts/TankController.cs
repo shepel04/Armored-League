@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class TankController : MonoBehaviourPunCallbacks
 {
+    // animation events
     public event Action<bool> EngineLaden; // engine radiators animation event
 
     public event Action<float> LeftTrackMoved; // left track animation event
     public event Action<float> RightTrackMoved; // right track animation event
+
+    // sound events
+    public event Action<float> EngineSounded;  // engine tracks sound event
+    public event Action<float> TracksSounded;  // tracks sound event
+    public event Action JumpSounded;  // jump sound effect
 
     public float MotorTorque = 1000f;
     public float BrakeTorque = 5000f;
@@ -59,7 +65,7 @@ public class TankController : MonoBehaviourPunCallbacks
             float turnInput = 0;
             bool isHandBrake = false;
             bool isJump = false;
-            
+
             if (_isControllerEnabled)
             {
                 moveInput = Input.GetAxis("Vertical");
@@ -146,6 +152,9 @@ public class TankController : MonoBehaviourPunCallbacks
             rpmAverageRight /= 4.0f;
             RightTrackMoved?.Invoke(rpmAverageRight); // event invocation for animation adjusting
 
+            TracksSounded?.Invoke((Math.Abs(rpmAverageRight) + Math.Abs(rpmAverageLeft)) / 2); // sound event
+            EngineSounded?.Invoke(Math.Max(Math.Abs(turnInput), Math.Abs(moveInput))); // sound event
+
             // Fast braking
             if (isHandBrake)
             {
@@ -165,6 +174,7 @@ public class TankController : MonoBehaviourPunCallbacks
             if (isJump && isReadyToJump && !isJumpState)
             {
                 StartCoroutine(InitiateJump());
+                JumpSounded?.Invoke(); // sound event
             }
             if (isJumpState && isAllowedGroundCheck && WhetherOnGround())
             {

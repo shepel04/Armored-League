@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3479807747568559559, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4684200755643770899, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
       propertyPath: sceneViewId
       value: 2
@@ -315,6 +319,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5356940300649504131, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515474042010433972, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
+      propertyPath: minShotForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6293580035052533823, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356717193477541067, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576341388773091714, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7586420678636736063, guid: 7eeae6dfc92b64d7dafea2baeed08c8e, type: 3}

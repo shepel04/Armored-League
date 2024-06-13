@@ -1,13 +1,20 @@
 using System;
 using System.Collections;
+using Ball;
 using Photon.Pun;
 using UnityEngine;
 
 public class TankShooting : MonoBehaviourPunCallbacks
 {
+    // animation events
     public event Action Shot; // shooting animation event
+
+    // ui events
     public event Action<float> FireHeld; // ui event
     public event Action<float, float> FireReleased; // ui event
+
+    // sound events
+    public event Action<float> ShotSounded;
 
     public float Range = 100f;
     public float FireForce = 500f;
@@ -61,6 +68,7 @@ public class TankShooting : MonoBehaviourPunCallbacks
 
             Shoot(ratioFireForce);
             Shot?.Invoke(); // barrel animation trigger
+            ShotSounded?.Invoke(ratioFireForce); // sound trigger
 
             currentHoldTime = 0.0f;
         }
@@ -100,6 +108,7 @@ public class TankShooting : MonoBehaviourPunCallbacks
 
     private IEnumerator TransferOwnershipAndApplyForce(PhotonView targetPhotonView, RaycastHit hit, Rigidbody rb, float ratioFireForce)
     {
+        // ---
         // Transfer ownership to the current player
         targetPhotonView.TransferOwnership(PhotonNetwork.LocalPlayer);
 
@@ -108,6 +117,14 @@ public class TankShooting : MonoBehaviourPunCallbacks
 
         // Optional: Add a small delay to ensure ownership has propagated
         yield return new WaitForSeconds(0.1f);
+        // ---
+
+        yield return new WaitForSeconds(0.0f);
+        // play hit sound if _rb belongs to ball
+        if (rb.CompareTag("Ball"))
+        {
+            rb.GetComponent<SoundEffects>().OnHit(ratioFireForce);
+        }
 
         // Apply force after ownership transfer is confirmed
         GiveImpulseByHit(hit, rb, ratioFireForce);
