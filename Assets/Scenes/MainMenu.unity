@@ -5699,7 +5699,7 @@ MonoBehaviour:
   _accountNameInputField: {fileID: 0}
   _accountPasswordInputField: {fileID: 0}
   _roomNameInputField: {fileID: 388598819}
-  _roomPasswordInputField: {fileID: 388598819}
+  _roomPasswordInputField: {fileID: 603015488}
   _playersAmountDropdown: {fileID: 246372546}
   _roomRowPrefab: {fileID: 5153786046698611535, guid: 93e8029fbd7794913979b4db4bde4df5, type: 3}
   _roomsList: {fileID: 1129950659}
