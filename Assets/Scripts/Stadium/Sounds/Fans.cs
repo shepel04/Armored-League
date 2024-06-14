@@ -143,9 +143,9 @@ namespace Stadium.Sounds
             // 1 - orange team scored
 
             bool isPlayGoalClips = false;
-            if (indexTeam == 0 && fansType == FansType.BlueTeamFans)
+            if (indexTeam == 0 && fansType == FansType.OrangeTeamFans)
                 isPlayGoalClips = true;
-            else if (indexTeam == 1 && fansType == FansType.OrangeTeamFans)
+            else if (indexTeam == 1 && fansType == FansType.BlueTeamFans)
                 isPlayGoalClips = true;
             else if (fansType == FansType.NeutralFans)
                 isPlayGoalClips = true;
