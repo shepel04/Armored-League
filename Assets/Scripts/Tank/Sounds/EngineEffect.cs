@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using Random = System.Random;
 
 namespace Tank.Sounds
 {
-    public class EngineEffect : MonoBehaviour
+    public class EngineEffect : MonoBehaviourPun
     {
         private Random random = new Random();
 
@@ -30,15 +31,17 @@ namespace Tank.Sounds
         {
             float volume =
                 input < minInput ?
-                minEngineWorkVolume :
-                input * maxEngineWorkVolume;
+                    minEngineWorkVolume :
+                    input * maxEngineWorkVolume;
 
             audioSource.volume = volume;
             //audioSource.pitch = Mathf.Clamp(volume / maxEngineWorkVolume, 0.0f, maxEngineWorkPitch);
 
             if (!isEngineWorkClipPlaying)
-                StartCoroutine(PlayEngineWorkClip());
+                photonView.RPC("PlayEngineWorkClip", RpcTarget.All);
         }
+
+        [PunRPC]
         private IEnumerator PlayEngineWorkClip()
         {
             int clipIndex = random.Next(onEngineWorkClips.Count);

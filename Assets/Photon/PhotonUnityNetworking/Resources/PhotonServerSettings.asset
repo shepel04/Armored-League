@@ -59,6 +59,9 @@ MonoBehaviour:
   - ShowTextForThreeSeconds
   - ShowScoredPlayerForThreeSeconds
   - StartSmallMatchCountdown
+  - PlayEngineWorkClip
+  - PlayJumpSound
+  - PlayShotSound
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
