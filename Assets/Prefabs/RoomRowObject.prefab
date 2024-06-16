@@ -455,7 +455,7 @@ MonoBehaviour:
   _roomPlayersAmount: {fileID: 4059303604409604205}
   _lockIcon: {fileID: 8505799353171688349}
   _passwordInput: {fileID: 0}
-  _passwordInputPrefab: {fileID: 1417289853095225423, guid: 3de1c0cc5bd2b6c4fbbbcc279e280e5c, type: 3}
+  _passwordInputPrefab: {fileID: 6210638659972612147, guid: bc0f6c49f99fcf741b19d4cf59f796e2, type: 3}
 --- !u!1 &8505799353171688349
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,5 +665,5 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
