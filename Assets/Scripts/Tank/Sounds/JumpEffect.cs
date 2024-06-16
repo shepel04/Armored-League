@@ -9,6 +9,7 @@ namespace Tank.Sounds
 
         [Min(0.0f)]
         public float volumeJump;
+        
         public AudioClip onJumpClip;
 
         void Start()
