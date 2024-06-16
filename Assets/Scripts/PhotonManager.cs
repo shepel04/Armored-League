@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -115,16 +114,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     public void JoinRandRoom()
     {
-        foreach (var roomInfo in _allRoomsInfo)
-        {
-            if (roomInfo.CustomProperties == null || !roomInfo.CustomProperties.ContainsKey("password"))
-            {
-                PhotonNetwork.JoinRoom(roomInfo.Name);
-                return;
-            }
-        }
-        
-        Debug.Log("No rooms available without password");
+        PhotonNetwork.JoinRandomRoom();
     }
 
     public void LeaveRoom()
@@ -136,4 +126,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel("MainMenu");
     }
+
+    
 }
