@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using Random = System.Random;
 
 namespace Tank.Sounds
 {
-    public class ShotEffect : MonoBehaviour
+    public class ShotEffect : MonoBehaviourPun
     {
         private Random random = new Random();
 
@@ -28,16 +29,18 @@ namespace Tank.Sounds
         {
             float volume =
                 ratioFireForce < minRatioShotForce ?
-                0.1f :
-                ratioFireForce * maxShotVolume;
+                    0.1f :
+                    ratioFireForce * maxShotVolume;
 
+            photonView.RPC("PlayShotSound", RpcTarget.All, volume, transformTarget.position);
+        }
+
+        [PunRPC]
+        private void PlayShotSound(float volume, Vector3 position)
+        {
             audioSource.transform.parent = null;
-            audioSource.transform.position = transformTarget.position;
-
-            audioSource.PlayOneShot(
-                onShotClips[random.Next(onShotClips.Count)],
-                volume);
-
+            audioSource.transform.position = position;
+            audioSource.PlayOneShot(onShotClips[random.Next(onShotClips.Count)], volume);
         }
     }
 }
