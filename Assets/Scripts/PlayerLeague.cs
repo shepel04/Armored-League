@@ -21,12 +21,17 @@ public class PlayerLeague : MonoBehaviour
         {
             Debug.Log("Player's current score: " + score);
             _playerPoints = score;
+
+            AssignLeague(_playerPoints);
+
+            PlayerLeagueText.text = CurrentPlayerLeague;
+
+            if (PlayerLeagueText2 != null && PlayerLeagueText3 != null)
+            {
+                PlayerLeagueText2.text = CurrentPlayerLeague;
+                PlayerLeagueText3.text = CurrentPlayerLeague;
+            }
         });
-        
-        AssignLeague(_playerPoints);
-        PlayerLeagueText.text = CurrentPlayerLeague;
-        PlayerLeagueText2.text = CurrentPlayerLeague;
-        PlayerLeagueText3.text = CurrentPlayerLeague;
     }
 
     void AssignLeague(int points)

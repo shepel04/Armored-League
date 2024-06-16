@@ -3707,11 +3707,16 @@ MonoBehaviour:
   TrackNameText2: {fileID: 1850780834}
   TrackNamePanel: {fileID: 1489141544}
   AudioClips:
+  - {fileID: 8300000, guid: 7a0af140d1c4940dfba8a60ffb75a7c3, type: 3}
+  - {fileID: 8300000, guid: 85015774f5f1b4c9a85cc8e2b952f410, type: 3}
+  - {fileID: 8300000, guid: e0d499e1f80f040809a7d9c08f0199ac, type: 3}
+  - {fileID: 8300000, guid: daba4dc08838346a2aaafb16190a2785, type: 3}
+  - {fileID: 8300000, guid: bdbb8579add154a05860b47126bb8d49, type: 3}
   - {fileID: 8300000, guid: e89d89fe61be04ff9ae0978de1090de6, type: 3}
   - {fileID: 8300000, guid: f7fae3f9adcbf446f973b58b4b456aee, type: 3}
   - {fileID: 8300000, guid: d87b301d6c2e744999f0ebf117b65596, type: 3}
-  - {fileID: 8300000, guid: 7a0af140d1c4940dfba8a60ffb75a7c3, type: 3}
   - {fileID: 8300000, guid: eda9e95408013476f9c11fe44df318b9, type: 3}
+  - {fileID: 8300000, guid: 7cfcc3978b2e24635a6db8f29d1fa4ff, type: 3}
   FadeDuration: 1
   ScrollSpeed: 50
   TextSpacing: 50
@@ -7767,6 +7772,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentPlayerLeague: 
   PlayerLeagueText: {fileID: 414394206}
+  PlayerLeagueText2: {fileID: 0}
+  PlayerLeagueText3: {fileID: 0}
 --- !u!1 &1775187583
 GameObject:
   m_ObjectHideFlags: 0
@@ -8610,7 +8617,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -147.57062, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8744,7 +8751,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -85.523865, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
