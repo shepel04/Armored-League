@@ -681,6 +681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PasswordInputCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1417289853095225423, guid: 3de1c0cc5bd2b6c4fbbbcc279e280e5c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3148592791672471234, guid: 3de1c0cc5bd2b6c4fbbbcc279e280e5c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -691,7 +695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3296771872830826094, guid: 3de1c0cc5bd2b6c4fbbbcc279e280e5c, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3910694144494280808, guid: 3de1c0cc5bd2b6c4fbbbcc279e280e5c, type: 3}
       propertyPath: m_Pivot.x
