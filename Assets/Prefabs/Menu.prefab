@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6692198017381284196}
   - component: {fileID: 2567832317231090317}
   - component: {fileID: 1161586388076137812}
-  - component: {fileID: 5768356636387438306}
   m_Layer: 5
   m_Name: LeaveRoomButton
   m_TagString: Untagged
@@ -122,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5768356636387438306}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameSceneLoader, Assembly-CSharp
         m_MethodName: LoadSceneByNumber
         m_Mode: 3
@@ -134,18 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &5768356636387438306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346723891182873286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c331bfafe47d242b81f6c6e2dd6466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2242268028509930494
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +504,7 @@ RectTransform:
   m_Father: {fileID: 8563237818988836864}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -577,7 +564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5226783021310879105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -769,7 +756,7 @@ RectTransform:
   m_Father: {fileID: 7869759385599324276}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
