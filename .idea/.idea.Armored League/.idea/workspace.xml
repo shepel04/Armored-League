@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a13247c-4367-4df9-8025-5bdf390839e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/RoomRowObject.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/RoomRowObject.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tank/Sounds/JumpEffect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tank/Sounds/JumpEffect.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,7 +156,7 @@
       <workItem from="1717076437278" duration="3230000" />
       <workItem from="1717088575009" duration="1307000" />
       <workItem from="1717147137253" duration="3669000" />
-      <workItem from="1718533182774" duration="415000" />
+      <workItem from="1718533182774" duration="838000" />
     </task>
     <servers />
   </component>
