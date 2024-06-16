@@ -147,8 +147,8 @@ public class PhotonManagerStadium : MonoBehaviourPunCallbacks
     public void MatchOver()
     {
         IsMatchStarted = false;
-
-        Time.timeScale = 0; 
+        
+        //Time.timeScale = 0; 
         MatchHUD.SetActive(false);
         
         _afterMatchCanvases = GameObject.FindGameObjectsWithTag("AfterMatchCanvas");

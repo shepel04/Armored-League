@@ -1127,6 +1127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentPlayerLeague: 
   PlayerLeagueText: {fileID: 354204659}
+  PlayerLeagueText2: {fileID: 1686809876}
+  PlayerLeagueText3: {fileID: 17839963}
 --- !u!4 &332011959
 Transform:
   m_ObjectHideFlags: 0
@@ -2738,7 +2740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &960486340
 RectTransform:
   m_ObjectHideFlags: 0

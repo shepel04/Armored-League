@@ -9,6 +9,8 @@ public class PlayerLeague : MonoBehaviour
 {
     public string CurrentPlayerLeague;
     public TMP_Text PlayerLeagueText;
+    public TMP_Text PlayerLeagueText2;
+    public TMP_Text PlayerLeagueText3;
     
     private int _playerPoints;
 
@@ -23,6 +25,8 @@ public class PlayerLeague : MonoBehaviour
         
         AssignLeague(_playerPoints);
         PlayerLeagueText.text = CurrentPlayerLeague;
+        PlayerLeagueText2.text = CurrentPlayerLeague;
+        PlayerLeagueText3.text = CurrentPlayerLeague;
     }
 
     void AssignLeague(int points)
