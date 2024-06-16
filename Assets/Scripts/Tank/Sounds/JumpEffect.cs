@@ -1,9 +1,8 @@
 using UnityEngine;
-using Photon.Pun;
 
 namespace Tank.Sounds
 {
-    public class JumpEffect : MonoBehaviourPun
+    public class JumpEffect : MonoBehaviour
     {
         private AudioSource audioSource;
         public TankController tankController;
@@ -20,13 +19,7 @@ namespace Tank.Sounds
 
         private void OnJumpSound()
         {
-            photonView.RPC("PlayJumpSound", RpcTarget.All, volumeJump);
-        }
-
-        [PunRPC]
-        private void PlayJumpSound(float volume)
-        {
-            audioSource.PlayOneShot(onJumpClip, volume);
+            audioSource.PlayOneShot(onJumpClip, volumeJump);
         }
     }
 }

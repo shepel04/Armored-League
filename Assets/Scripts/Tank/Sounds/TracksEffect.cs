@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 using Random = System.Random;
 
 namespace Tank.Sounds
 {
-    public class TracksEffect : MonoBehaviourPun
+    public class TracksEffect : MonoBehaviour
     {
         private Random random = new Random();
 
@@ -32,17 +30,15 @@ namespace Tank.Sounds
         {
             float volume =
                 rpm < minTrackWheelRPM ?
-                    0.0f :
-                    Mathf.Clamp(rpm / maxTrackWheelRPM, 0.0f, maxTracksRunVolume);
+                0.0f :
+                Mathf.Clamp(rpm / maxTrackWheelRPM, 0.0f, maxTracksRunVolume);
             
             audioSource.volume = volume;
             //audioSource.pitch = Mathf.Clamp(volume / maxTracksRunVolume, 0.0f, maxTracksRunPitch);
 
             if (volume != 0.0f && !isTracksRunClipPlaying)
-                photonView.RPC("PlayEngineWorkClip", RpcTarget.All);
+                StartCoroutine(PlayEngineWorkClip());
         }
-
-        [PunRPC]
         private IEnumerator PlayEngineWorkClip()
         {
             int clipIndex = random.Next(onTracksRunClips.Count);

@@ -8383,7 +8383,6 @@ GameObject:
   - component: {fileID: 1179254995872784240}
   - component: {fileID: 8908869359001648183}
   - component: {fileID: 5706525757663060508}
-  - component: {fileID: 6657529010825646056}
   m_Layer: 0
   m_Name: audioSource_Tracks
   m_TagString: Untagged
@@ -8522,28 +8521,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c8c8d3aa770fe50418a91a9670b6eadb, type: 3}
   minTrackWheelRPM: 10
   maxTrackWheelRPM: 700
---- !u!114 &6657529010825646056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3255481043580692953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &3394605017968220540
 GameObject:
   m_ObjectHideFlags: 0
@@ -11775,7 +11752,6 @@ GameObject:
   - component: {fileID: 3362660535830438367}
   - component: {fileID: 1371192596219822920}
   - component: {fileID: 229500333296059501}
-  - component: {fileID: 8534996644663317972}
   m_Layer: 0
   m_Name: audioSource_Jump
   m_TagString: Untagged
@@ -11909,28 +11885,6 @@ MonoBehaviour:
   tankController: {fileID: 3479807747568559559}
   volumeJump: 1
   onJumpClip: {fileID: 8300000, guid: 9270882569748b44599fd044a1b07082, type: 3}
---- !u!114 &8534996644663317972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5081433659948215739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &5083504929197471755
 GameObject:
   m_ObjectHideFlags: 0
@@ -19630,7 +19584,6 @@ GameObject:
   - component: {fileID: 8068532549231013974}
   - component: {fileID: 1481693549705004700}
   - component: {fileID: 4182489057810270756}
-  - component: {fileID: 6993408453254744647}
   m_Layer: 0
   m_Name: audioSource_Engine
   m_TagString: Untagged
@@ -19769,28 +19722,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 35375e0653d10b74e8d73e9db0d357fb, type: 3}
   - {fileID: 8300000, guid: 6f99822bb03fd5c4fa8492cd3c083fb0, type: 3}
   minInput: 0.2
---- !u!114 &6993408453254744647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635647001220003759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &7641031700627901971
 GameObject:
   m_ObjectHideFlags: 0
@@ -21464,7 +21395,6 @@ GameObject:
   - component: {fileID: 1814141344592122938}
   - component: {fileID: 3075853088419908668}
   - component: {fileID: 5515474042010433972}
-  - component: {fileID: 2960587804824884576}
   m_Layer: 0
   m_Name: audioSource_Shot
   m_TagString: Untagged
@@ -21603,28 +21533,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cd171bd3a624e674a95856365013155b, type: 3}
   - {fileID: 8300000, guid: b9d12fba08ff92e4d92d2c25e261fbc0, type: 3}
   minRatioShotForce: 0.2
---- !u!114 &2960587804824884576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238522327653381633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &8241146771781103924
 GameObject:
   m_ObjectHideFlags: 0
