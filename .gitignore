@@ -71,4 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/PlayFabEditorExtensions/Editor/.DS_Store
-.DS_Store
+Assets/Scenes/.DS_Store
+Assets/Scenes/.DS_Store
